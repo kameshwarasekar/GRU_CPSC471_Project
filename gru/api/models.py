@@ -9,22 +9,24 @@ from django.db import models
 
 
 class Alumni(models.Model):
-    alumni_id = models.AutoField()
+    alumni_id = models.AutoField(primary_key=True)
     name = models.TextField()
     graduation_year = models.IntegerField()
     achievement_description = models.TextField(blank=True, null=True)
     uni_name = models.TextField(blank=True, null=True)
-    trial666 = models.CharField(db_column='TRIAL666', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'alumni'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
 
 
 class AlumniHas(models.Model):
-    alumni_id = models.AutoField()
+    alumni_id = models.AutoField(primary_key=True)
     degree_name = models.TextField()
-    trial666 = models.CharField(db_column='TRIAL666', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -36,7 +38,6 @@ class Award(models.Model):
     name = models.TextField()
     award_name = models.TextField()
     year_awarded = models.IntegerField()
-    trial666 = models.CharField(db_column='TRIAL666', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -44,10 +45,9 @@ class Award(models.Model):
 
 
 class Club(models.Model):
-    club_id = models.AutoField()
+    club_id = models.AutoField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    trial669 = models.CharField(db_column='TRIAL669', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -55,11 +55,10 @@ class Club(models.Model):
 
 
 class Course(models.Model):
-    course_code = models.AutoField(unique=True)
+    course_code = models.AutoField(primary_key=True)
     course_number = models.FloatField()
     course_name = models.TextField(blank=True, null=True)
     faculty_id = models.IntegerField(blank=True, null=True)
-    trial669 = models.CharField(db_column='TRIAL669', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -67,10 +66,9 @@ class Course(models.Model):
 
 
 class CourseTeaching(models.Model):
-    course_code = models.AutoField()
+    course_code = models.AutoField(primary_key=True)
     course_number = models.FloatField()
     prof_id = models.IntegerField()
-    trial669 = models.CharField(db_column='TRIAL669', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -80,7 +78,6 @@ class CourseTeaching(models.Model):
 class Degree(models.Model):
     name = models.TextField()
     field = models.TextField(blank=True, null=True)
-    trial672 = models.CharField(db_column='TRIAL672', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -88,10 +85,9 @@ class Degree(models.Model):
 
 
 class EntryRequirement(models.Model):
-    major_code = models.AutoField()
+    major_code = models.AutoField(primary_key=True)
     class_name = models.TextField()
     grade = models.IntegerField()
-    trial672 = models.CharField(db_column='TRIAL672', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -99,11 +95,10 @@ class EntryRequirement(models.Model):
 
 
 class EquivalentClass(models.Model):
-    major_code = models.AutoField()
+    major_code = models.AutoField(primary_key=True)
     class_name = models.TextField()
     name = models.TextField()
     grade = models.IntegerField()
-    trial672 = models.CharField(db_column='TRIAL672', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -112,7 +107,6 @@ class EquivalentClass(models.Model):
 
 class ExtraCurricularProgram(models.Model):
     name = models.TextField()
-    trial672 = models.CharField(db_column='TRIAL672', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -122,7 +116,6 @@ class ExtraCurricularProgram(models.Model):
 class ExtracurricularOfferings(models.Model):
     uni_name = models.TextField()
     excurricular_name = models.TextField()
-    trial676 = models.CharField(db_column='TRIAL676', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -130,11 +123,10 @@ class ExtracurricularOfferings(models.Model):
 
 
 class Faculty(models.Model):
-    faculty_id = models.AutoField()
+    faculty_id = models.AutoField(primary_key=True)
     name = models.TextField()
     description = models.TextField(blank=True, null=True)
     uni_name = models.TextField(blank=True, null=True)
-    trial676 = models.CharField(db_column='TRIAL676', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -142,9 +134,8 @@ class Faculty(models.Model):
 
 
 class FieldOfStudy(models.Model):
-    prof_id = models.AutoField()
+    prof_id = models.AutoField(primary_key=True)
     field_name = models.TextField()
-    trial676 = models.CharField(db_column='TRIAL676', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -152,11 +143,10 @@ class FieldOfStudy(models.Model):
 
 
 class GruUser(models.Model):
-    user_id = models.AutoField()
+    user_id = models.AutoField(primary_key=True)
     email = models.TextField()
     name = models.TextField(blank=True, null=True)
     password = models.TextField()
-    trial676 = models.CharField(db_column='TRIAL676', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -164,12 +154,11 @@ class GruUser(models.Model):
 
 
 class Major(models.Model):
-    major_code = models.AutoField()
+    major_code = models.AutoField(primary_key=True)
     major_name = models.TextField()
     no_of_years = models.IntegerField()
     degree_name = models.TextField(blank=True, null=True)
     faculty_id = models.IntegerField(blank=True, null=True)
-    trial679 = models.CharField(db_column='TRIAL679', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -177,9 +166,8 @@ class Major(models.Model):
 
 
 class Preference(models.Model):
-    pref_id = models.AutoField(unique=True)
+    pref_id = models.AutoField(primary_key=True)
     user_id = models.IntegerField()
-    trial679 = models.CharField(db_column='TRIAL679', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -187,10 +175,9 @@ class Preference(models.Model):
 
 
 class PreferenceContain(models.Model):
-    pref_id = models.AutoField()
+    pref_id = models.AutoField(primary_key=True)
     uni_name = models.TextField()
     user_id = models.IntegerField()
-    trial679 = models.CharField(db_column='TRIAL679', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -198,10 +185,9 @@ class PreferenceContain(models.Model):
 
 
 class PreferredUni(models.Model):
-    pref_id = models.AutoField()
+    pref_id = models.AutoField(primary_key=True)
     preferred_uni_name = models.TextField(blank=True, null=True)
     user_id = models.IntegerField()
-    trial679 = models.CharField(db_column='TRIAL679', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -209,12 +195,11 @@ class PreferredUni(models.Model):
 
 
 class Professor(models.Model):
-    prof_id = models.AutoField()
+    prof_id = models.AutoField(primary_key=True)
     rating = models.FloatField(blank=True, null=True)
     name = models.TextField()
     uni_name = models.TextField(blank=True, null=True)
     faculty_id = models.IntegerField(blank=True, null=True)
-    trial682 = models.CharField(db_column='TRIAL682', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -224,7 +209,6 @@ class Professor(models.Model):
 class Provides(models.Model):
     uni_name = models.TextField(blank=True, null=True)
     degree_name = models.TextField(blank=True, null=True)
-    trial682 = models.CharField(db_column='TRIAL682', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -232,12 +216,11 @@ class Provides(models.Model):
 
 
 class Ranking(models.Model):
-    uni_code = models.AutoField()
+    uni_code = models.AutoField(primary_key=True)
     best_program = models.TextField(blank=True, null=True)
     rank = models.IntegerField()
     prev_year_rank = models.IntegerField(blank=True, null=True)
     uni_name = models.TextField(blank=True, null=True)
-    trial682 = models.CharField(db_column='TRIAL682', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -247,7 +230,6 @@ class Ranking(models.Model):
 class Sport(models.Model):
     sport = models.TextField()
     name = models.TextField()
-    trial685 = models.CharField(db_column='TRIAL685', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -255,11 +237,10 @@ class Sport(models.Model):
 
 
 class Staff(models.Model):
-    staff_id = models.AutoField()
+    staff_id = models.AutoField(primary_key=True)
     position = models.TextField()
     name = models.TextField()
     uni_name = models.TextField(blank=True, null=True)
-    trial685 = models.CharField(db_column='TRIAL685', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -272,7 +253,6 @@ class University(models.Model):
     description = models.TextField()
     impact_on_industry = models.TextField(blank=True, null=True)
     finances = models.IntegerField(blank=True, null=True)
-    trial685 = models.CharField(db_column='TRIAL685', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
