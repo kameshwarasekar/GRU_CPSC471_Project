@@ -16,11 +16,11 @@ class Alumni(models.Model):
     achievement_description = models.TextField(blank=True, null=True)
     uni_name = models.TextField(blank=True, null=True)
 
-    class Meta:
+    '''class Meta:
         managed = False
         db_table = 'alumni'
         ordering = ['name']
-
+    '''
     def __str__(self):
         return self.name
 
