@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+import uuid
 
 
 class Alumni(models.Model):
@@ -32,16 +33,24 @@ class AlumniHas(models.Model):
         managed = False
         db_table = 'alumni_has'
 
+    def __str__(self):
+        return self.alumni_id
+
 
 class Award(models.Model):
     sport = models.TextField()
     name = models.TextField()
-    award_name = models.TextField()
+    award_name = models.TextField(primary_key=True)
     year_awarded = models.IntegerField()
+
+    # award_id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
         db_table = 'award'
+
+    def __str__(self):
+        return self.name
 
 
 class Club(models.Model):
@@ -52,6 +61,9 @@ class Club(models.Model):
     class Meta:
         managed = False
         db_table = 'club'
+
+    def __str__(self):
+        return self.name
 
 
 class Course(models.Model):
@@ -64,6 +76,9 @@ class Course(models.Model):
         managed = False
         db_table = 'course'
 
+    def __str__(self):
+        return self.course_name + " " + str(self.course_code)
+
 
 class CourseTeaching(models.Model):
     course_code = models.AutoField(primary_key=True)
@@ -74,14 +89,20 @@ class CourseTeaching(models.Model):
         managed = False
         db_table = 'course_teaching'
 
+    def __str__(self):
+        return self.course_code
+
 
 class Degree(models.Model):
-    name = models.TextField()
+    name = models.TextField(primary_key=True)
     field = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'degree'
+
+    def __str__(self):
+        return self.name
 
 
 class EntryRequirement(models.Model):
@@ -92,6 +113,9 @@ class EntryRequirement(models.Model):
     class Meta:
         managed = False
         db_table = 'entry_requirement'
+
+    def __str__(self):
+        return self.major_code
 
 
 class EquivalentClass(models.Model):
@@ -104,22 +128,33 @@ class EquivalentClass(models.Model):
         managed = False
         db_table = 'equivalent_class'
 
+    def __str__(self):
+        return self.major_code
+
 
 class ExtraCurricularProgram(models.Model):
-    name = models.TextField()
+    name = models.TextField(primary_key=True)
 
     class Meta:
         managed = False
         db_table = 'extra_curricular_program'
 
+    def __str__(self):
+        return self.name
+
 
 class ExtracurricularOfferings(models.Model):
+    id = models.UUIDField(primary_key=True,
+                          default=uuid.uuid4,
+                          help_text='Unique ID for extracurricular offerings')
     uni_name = models.TextField()
     excurricular_name = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'extracurricular_offerings'
+
+    def __str__(self):
+        return self.uni_name
 
 
 class Faculty(models.Model):
@@ -132,6 +167,9 @@ class Faculty(models.Model):
         managed = False
         db_table = 'faculty'
 
+    def __str__(self):
+        return self.name
+
 
 class FieldOfStudy(models.Model):
     prof_id = models.AutoField(primary_key=True)
@@ -140,6 +178,9 @@ class FieldOfStudy(models.Model):
     class Meta:
         managed = False
         db_table = 'field_of_study'
+
+    def __str__(self):
+        return self.prof_id
 
 
 class GruUser(models.Model):
@@ -151,6 +192,9 @@ class GruUser(models.Model):
     class Meta:
         managed = False
         db_table = 'gru_user'
+
+    def __str__(self):
+        return self.name
 
 
 class Major(models.Model):
@@ -164,6 +208,9 @@ class Major(models.Model):
         managed = False
         db_table = 'major'
 
+    def __str__(self):
+        return self.major_name + " " + str(self.major_code)
+
 
 class Preference(models.Model):
     pref_id = models.AutoField(primary_key=True)
@@ -172,6 +219,9 @@ class Preference(models.Model):
     class Meta:
         managed = False
         db_table = 'preference'
+
+    def __str__(self):
+        return str(self.pref_id) + " " + str(self.user_id)
 
 
 class PreferenceContain(models.Model):
@@ -183,6 +233,9 @@ class PreferenceContain(models.Model):
         managed = False
         db_table = 'preference_contain'
 
+    def __str__(self):
+        return self.pref_id
+
 
 class PreferredUni(models.Model):
     pref_id = models.AutoField(primary_key=True)
@@ -192,6 +245,9 @@ class PreferredUni(models.Model):
     class Meta:
         managed = False
         db_table = 'preferred_uni'
+
+    def __str__(self):
+        return self.pref_id
 
 
 class Professor(models.Model):
@@ -205,6 +261,9 @@ class Professor(models.Model):
         managed = False
         db_table = 'professor'
 
+    def __str__(self):
+        return self.prof_id
+
 
 class Provides(models.Model):
     uni_name = models.TextField(blank=True, null=True)
@@ -213,6 +272,9 @@ class Provides(models.Model):
     class Meta:
         managed = False
         db_table = 'provides'
+
+    def __str__(self):
+        return self.uni_name
 
 
 class Ranking(models.Model):
@@ -226,14 +288,24 @@ class Ranking(models.Model):
         managed = False
         db_table = 'ranking'
 
+    def __str__(self):
+        return self.uni_name
+
 
 class Sport(models.Model):
     sport = models.TextField()
     name = models.TextField()
 
     class Meta:
+        unique_together = ((
+            'sport',
+            'name',
+        ), )
         managed = False
         db_table = 'sport'
+
+    def __str__(self):
+        return self.sport
 
 
 class Staff(models.Model):
@@ -246,9 +318,12 @@ class Staff(models.Model):
         managed = False
         db_table = 'staff'
 
+    def __str__(self):
+        return self.staff_id
+
 
 class University(models.Model):
-    name = models.TextField()
+    name = models.TextField(primary_key=True)
     location = models.TextField()
     description = models.TextField()
     impact_on_industry = models.TextField(blank=True, null=True)
@@ -257,3 +332,6 @@ class University(models.Model):
     class Meta:
         managed = False
         db_table = 'university'
+
+    def __str__(self):
+        return self.name
