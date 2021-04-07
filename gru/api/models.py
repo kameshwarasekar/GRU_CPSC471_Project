@@ -26,8 +26,9 @@ class Alumni(models.Model):
 
 
 class AlumniHas(models.Model):
-    alumni_id = models.AutoField(primary_key=True)
+    alumni_id = models.IntegerField()
     degree_name = models.TextField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -81,9 +82,10 @@ class Course(models.Model):
 
 
 class CourseTeaching(models.Model):
-    course_code = models.AutoField(primary_key=True)
+    course_code = models.IntegerField()
     course_number = models.FloatField()
     prof_id = models.IntegerField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -106,9 +108,10 @@ class Degree(models.Model):
 
 
 class EntryRequirement(models.Model):
-    major_code = models.AutoField(primary_key=True)
+    major_code = models.IntegerField()
     class_name = models.TextField()
     grade = models.IntegerField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -119,10 +122,11 @@ class EntryRequirement(models.Model):
 
 
 class EquivalentClass(models.Model):
-    major_code = models.AutoField(primary_key=True)
+    major_code = models.IntegerField()
     class_name = models.TextField()
     name = models.TextField()
     grade = models.IntegerField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -144,11 +148,9 @@ class ExtraCurricularProgram(models.Model):
 
 
 class ExtracurricularOfferings(models.Model):
-    id = models.UUIDField(primary_key=True,
-                          default=uuid.uuid4,
-                          help_text='Unique ID for extracurricular offerings')
     uni_name = models.TextField()
     excurricular_name = models.TextField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         db_table = 'extracurricular_offerings'
@@ -172,8 +174,9 @@ class Faculty(models.Model):
 
 
 class FieldOfStudy(models.Model):
-    prof_id = models.AutoField(primary_key=True)
+    prof_id = models.IntegerField()
     field_name = models.TextField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -225,9 +228,10 @@ class Preference(models.Model):
 
 
 class PreferenceContain(models.Model):
-    pref_id = models.AutoField(primary_key=True)
+    pref_id = models.IntegerField()
     uni_name = models.TextField()
     user_id = models.IntegerField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -238,9 +242,10 @@ class PreferenceContain(models.Model):
 
 
 class PreferredUni(models.Model):
-    pref_id = models.AutoField(primary_key=True)
+    pref_id = models.IntegerField()
     preferred_uni_name = models.TextField(blank=True, null=True)
     user_id = models.IntegerField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -268,6 +273,7 @@ class Professor(models.Model):
 class Provides(models.Model):
     uni_name = models.TextField(blank=True, null=True)
     degree_name = models.TextField(blank=True, null=True)
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -295,6 +301,7 @@ class Ranking(models.Model):
 class Sport(models.Model):
     sport = models.TextField()
     name = models.TextField()
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         unique_together = ((
