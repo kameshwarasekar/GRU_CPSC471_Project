@@ -173,7 +173,8 @@ class Faculty(models.Model):
 
 
 class FieldOfStudy(models.Model):
-    prof_id = models.AutoField(primary_key=True)
+    fot_id = models.IntegerField(primary_key=True)
+    prof_id = models.IntegerField()
     field_name = models.TextField()
 
     class Meta:
