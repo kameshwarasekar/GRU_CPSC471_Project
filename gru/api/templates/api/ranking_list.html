@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Uni List</h1>
+{% if ranking_list %}
+<ul>
+    {% for ranking in ranking_list %}
+    <li>
+        <a href="{{ ranking.get_absolute_url }}">{{ ranking.uni_name}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no rankings in the database.</p>
+{% endif %}
+{% endblock %}

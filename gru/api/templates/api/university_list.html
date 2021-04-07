@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Uni List</h1>
+{% if university_list %}
+<ul>
+    {% for university in university_list %}
+    <li>
+        <a href="{{ university.get_absolute_url }}">{{ university.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no universites in the database.</p>
+{% endif %}
+{% endblock %}

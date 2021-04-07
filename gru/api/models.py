@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 import uuid
+from django.urls import reverse
 
 
 class Alumni(models.Model):
@@ -265,9 +266,14 @@ class Professor(models.Model):
     class Meta:
         managed = False
         db_table = 'professor'
+        ordering = ['name']
 
     def __str__(self):
         return self.prof_id
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('professor-detail', args=[str(self.prof_id)])
 
 
 class Provides(models.Model):
@@ -293,9 +299,14 @@ class Ranking(models.Model):
     class Meta:
         managed = False
         db_table = 'ranking'
+        ordering = ['rank']
 
     def __str__(self):
         return self.uni_name
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('ranking-detail', args=[str(self.uni_code)])
 
 
 class Sport(models.Model):
@@ -339,6 +350,11 @@ class University(models.Model):
     class Meta:
         managed = False
         db_table = 'university'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('university-detail', args=[str(self.name)])
