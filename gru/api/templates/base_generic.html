@@ -23,11 +23,12 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="text-align: center;">
         <div class="row">
             <div class="col-sm-12 ">{% block content %}{% endblock %}</div>
         </div>
     </div>
+    <footer><a href="{% url 'index'%}">Homepage</a></footer>
 </body>
 
 </html>

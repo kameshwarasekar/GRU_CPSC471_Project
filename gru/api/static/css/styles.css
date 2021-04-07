@@ -6,7 +6,7 @@ h1 {
 
 body {
     font-family: "Kiwi Maru", serif;
-    background-color: #d8f5bb;
+    background-color: #feffde;
 }
 
 ol {
@@ -17,7 +17,7 @@ ol {
     margin-top: 50px;
 }
 
-table {
+/* table {
     margin-left: auto;
     margin-right: auto;
 }
@@ -25,10 +25,18 @@ table {
 th,
 td {
     border: 1px solid black;
-}
+} */
 
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
     list-style: none;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
 }

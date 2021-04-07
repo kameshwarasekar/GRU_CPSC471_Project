@@ -15,4 +15,5 @@ urlpatterns = [
     path('ranking/<int:pk>',
          views.RankingDetailView.as_view(),
          name='ranking-detail'),
+    path('option/', views.option, name='option'),
 ]

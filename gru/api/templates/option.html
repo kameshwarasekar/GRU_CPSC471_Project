@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div style="text-align: center">
+    <h1>Choose one of the following options</h1>
+    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" id="uni">
+        Browse Universities
+    </button>
+    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" id="rank">
+        Browse Rankings
+    </button>
+    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" id="prof">
+        Browse Professors
+    </button>
+    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px">
+        View Account(For Login Users Only)
+    </button>
+</div>
+<script>
+    document.getElementById("uni").addEventListener("click", function () {
+        window.location.href = "{% url 'university' %}";
+    });
+    document.getElementById("rank").addEventListener("click", function () {
+        window.location.href = "{% url 'ranking' %}";
+    });
+    document.getElementById("prof").addEventListener("click", function () {
+        window.location.href = "{% url 'professor' %}";
+    });
+</script>
+{% endblock %}

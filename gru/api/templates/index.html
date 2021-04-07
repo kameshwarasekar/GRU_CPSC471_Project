@@ -16,7 +16,7 @@
     <li>University of Wisconsin-Madison, United States</li>
 </ol>
 
-<button type="button" class="btn btn-primary btn-lg" style="position: absolute; right: 575px; top: 150px" id="login">
+<button type="button" class="btn btn-primary btn-lg" style="position: absolute; right: 550px; top: 150px" id="login">
     Login Options
 </button>
 
@@ -32,7 +32,7 @@
     });
     const noLogin = document.getElementById("noLogin");
     noLogin.addEventListener("click", function () {
-        window.location.href = "{% url 'index' %}";
+        window.location.href = "{% url 'option' %}";
     });
 </script>
 
