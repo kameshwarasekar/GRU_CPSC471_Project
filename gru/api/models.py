@@ -27,9 +27,8 @@ class Alumni(models.Model):
 
 
 class AlumniHas(models.Model):
-    alumni_id = models.IntegerField()
+    alumni_id = models.AutoField(primary_key=True)
     degree_name = models.TextField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -45,10 +44,8 @@ class Award(models.Model):
     award_name = models.TextField(primary_key=True)
     year_awarded = models.IntegerField()
 
-    # award_id = models.AutoField(primary_key=True)
-
     class Meta:
-        managed = False
+        managed = True
         db_table = 'award'
 
     def __str__(self):
@@ -83,10 +80,9 @@ class Course(models.Model):
 
 
 class CourseTeaching(models.Model):
-    course_code = models.IntegerField()
+    course_code = models.AutoField(primary_key=True)
     course_number = models.FloatField()
     prof_id = models.IntegerField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -101,18 +97,20 @@ class Degree(models.Model):
     field = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'degree'
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'field'], name='uniqueDegree')
+        ]
 
     def __str__(self):
         return self.name
 
 
 class EntryRequirement(models.Model):
-    major_code = models.IntegerField()
+    major_code = models.AutoField(primary_key=True)
     class_name = models.TextField()
     grade = models.IntegerField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -123,11 +121,10 @@ class EntryRequirement(models.Model):
 
 
 class EquivalentClass(models.Model):
-    major_code = models.IntegerField()
+    major_code = models.AutoField(primary_key=True)
     class_name = models.TextField()
     name = models.TextField()
     grade = models.IntegerField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -150,10 +147,10 @@ class ExtraCurricularProgram(models.Model):
 
 class ExtracurricularOfferings(models.Model):
     uni_name = models.TextField()
-    excurricular_name = models.TextField()
-    id = models.AutoField(primary_key=True)
+    excurricular_name = models.TextField(primary_key=True)
 
     class Meta:
+        managed = False
         db_table = 'extracurricular_offerings'
 
     def __str__(self):
@@ -175,9 +172,8 @@ class Faculty(models.Model):
 
 
 class FieldOfStudy(models.Model):
-    prof_id = models.IntegerField()
+    prof_id = models.AutoField(primary_key=True)
     field_name = models.TextField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -229,10 +225,9 @@ class Preference(models.Model):
 
 
 class PreferenceContain(models.Model):
-    pref_id = models.IntegerField()
+    pref_id = models.AutoField(primary_key=True)
     uni_name = models.TextField()
     user_id = models.IntegerField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -243,10 +238,9 @@ class PreferenceContain(models.Model):
 
 
 class PreferredUni(models.Model):
-    pref_id = models.IntegerField()
+    pref_id = models.AutoField(primary_key=True)
     preferred_uni_name = models.TextField(blank=True, null=True)
     user_id = models.IntegerField()
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -277,9 +271,9 @@ class Professor(models.Model):
 
 
 class Provides(models.Model):
+    provides_id = models.IntegerField(primary_key=True)
     uni_name = models.TextField(blank=True, null=True)
     degree_name = models.TextField(blank=True, null=True)
-    id = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -311,14 +305,9 @@ class Ranking(models.Model):
 
 class Sport(models.Model):
     sport = models.TextField()
-    name = models.TextField()
-    id = models.AutoField(primary_key=True)
+    name = models.TextField(primary_key=True)
 
     class Meta:
-        unique_together = ((
-            'sport',
-            'name',
-        ), )
         managed = False
         db_table = 'sport'
 
