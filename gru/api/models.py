@@ -35,7 +35,7 @@ class AlumniHas(models.Model):
         db_table = 'alumni_has'
 
     def __str__(self):
-        return self.alumni_id
+        return str(self.alumni_id)
 
 
 class Award(models.Model):
@@ -89,7 +89,7 @@ class CourseTeaching(models.Model):
         db_table = 'course_teaching'
 
     def __str__(self):
-        return self.course_code
+        return str(self.course_code)
 
 
 class Degree(models.Model):
@@ -100,7 +100,8 @@ class Degree(models.Model):
         managed = True
         db_table = 'degree'
         constraints = [
-            models.UniqueConstraint(fields=['name', 'field'], name='uniqueDegree')
+            models.UniqueConstraint(fields=['name', 'field'],
+                                    name='uniqueDegree')
         ]
 
     def __str__(self):
@@ -117,7 +118,7 @@ class EntryRequirement(models.Model):
         db_table = 'entry_requirement'
 
     def __str__(self):
-        return self.major_code
+        return str(self.major_code)
 
 
 class EquivalentClass(models.Model):
@@ -131,7 +132,7 @@ class EquivalentClass(models.Model):
         db_table = 'equivalent_class'
 
     def __str__(self):
-        return self.major_code
+        return str(self.major_code)
 
 
 class ExtraCurricularProgram(models.Model):
@@ -154,7 +155,7 @@ class ExtracurricularOfferings(models.Model):
         db_table = 'extracurricular_offerings'
 
     def __str__(self):
-        return self.uni_name
+        return self.excurricular_name
 
 
 class Faculty(models.Model):
@@ -180,7 +181,7 @@ class FieldOfStudy(models.Model):
         db_table = 'field_of_study'
 
     def __str__(self):
-        return self.prof_id
+        return str(self.prof_id)
 
 
 class GruUser(models.Model):
@@ -234,7 +235,7 @@ class PreferenceContain(models.Model):
         db_table = 'preference_contain'
 
     def __str__(self):
-        return self.pref_id
+        return str(self.pref_id)
 
 
 class PreferredUni(models.Model):
@@ -247,7 +248,7 @@ class PreferredUni(models.Model):
         db_table = 'preferred_uni'
 
     def __str__(self):
-        return self.pref_id
+        return str(self.pref_id)
 
 
 class Professor(models.Model):
@@ -263,7 +264,7 @@ class Professor(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.prof_id
+        return str(self.prof_id)
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
@@ -312,7 +313,7 @@ class Sport(models.Model):
         db_table = 'sport'
 
     def __str__(self):
-        return self.sport
+        return self.name
 
 
 class Staff(models.Model):
@@ -326,7 +327,7 @@ class Staff(models.Model):
         db_table = 'staff'
 
     def __str__(self):
-        return self.staff_id
+        return str(self.staff_id)
 
 
 class University(models.Model):
