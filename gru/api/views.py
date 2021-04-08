@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from .models import Professor, University, Ranking
+from .models import Professor, University, Ranking, Alumni
 from django.views import generic
 from django.http import HttpResponse
 from  django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Alumni
-from .serializers import AlumniSerializer
+from .serializers import AlumniSerializer, ProfessorSerializer
 
 # Create your views here.
 
@@ -16,6 +15,14 @@ class AlumniList(APIView):
     def get(self, request):
         alumni = Alumni.objects.all()
         serializer = AlumniSerializer(alumni, many=True)
+        return Response(serializer.data)
+    def post(self):
+        pass
+
+class ProfessorList(APIView):
+    def get(self, request):
+        professor = Professor.objects.all()
+        serializer = ProfessorSerializer(professor, many=True)
         return Response(serializer.data)
     def post(self):
         pass
