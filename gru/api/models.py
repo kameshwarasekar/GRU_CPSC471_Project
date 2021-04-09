@@ -18,7 +18,7 @@ class Alumni(models.Model):
     uni_name = models.TextField(blank=True, null=True)
     
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'alumni'
         ordering = ['name']
     

@@ -24,9 +24,13 @@ from api import views
 from django.views.generic import RedirectView
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^alumni/', views.AlumniList.as_view()),
+    path('alumni/', views.get, name = "alumni"),
+    path('alumni-create/', views.post,name ="alumni-create"),
+    path('alumni-update/<str:pk>', views.put,name ="alumni-update"),
+    path('alumni-delete/<str:pk>', views.delete,name ="alumni-delete"),
     url(r'^professor/', views.ProfessorList.as_view()),
 ]
 
