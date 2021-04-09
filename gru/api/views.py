@@ -258,6 +258,123 @@ def faculty_delete(request, pk):
     return Response('Item successfully deleted')
 
 
+#---------------------------Major----------------------------------
+
+@api_view(['GET'])
+def major_get(request):
+    major = Major.objects.all()
+    serializer = MajorSerializer(major, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def major_getspecific(request, pk):
+    major = Major.objects.get(major_code = pk)
+    serializer = MajorSerializer(major, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def major_post(request, format=None):
+    serializer = MajorSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def major_put(request, pk):
+    major = Major.objects.get(major_code=pk)
+    major = MajorSerializer(instance = major, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def major_delete(request, pk):
+    major = Major.objects.get(major_code=pk)
+    major.delete()
+    return Response('Item successfully deleted')
+
+#---------------------------EntryRequirement----------------------------------
+
+@api_view(['GET'])
+def entryRequirement_get(request):
+    entryRequirement = EntryRequirement.objects.all()
+    serializer = EntryRequirementSerializer(entryRequirement, many=True)
+    return Response(serializer.data)
+
+# @api_view(['GET'])
+# def entryRequirement_getspecific(request, pk):
+#     entryRequirement = EntryRequirement.objects.get(str(major_code+class_name)=pk)
+#     serializer = EntryRequirementSerializer(entryRequirement, many=False)
+#     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def entryRequirement_post(request, format=None):
+    serializer = EntryRequirementSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['PUT'])
+# def entryRequirement_put(request, pk):
+#     entryRequirement = EntryRequirement.objects.get(major_code+class_name=pk)
+#     entryRequirement = EntryRequirementSerializer(instance = entryRequirement, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['DELETE'])
+# def entryRequirement_delete(request, pk):
+#     entryRequirement = EntryRequirement.objects.get(major_code+class_name=pk)
+#     entryRequirement.delete()
+#     return Response('Item successfully deleted')
+
+
+
+#---------------------------EquivalentClass----------------------------------
+
+@api_view(['GET'])
+def equivalentClass_get(request):
+    equivalentClass = EquivalentClass.objects.all()
+    serializer = EquivalentClassSerializer(equivalentClass, many=True)
+    return Response(serializer.data)
+
+# @api_view(['GET'])
+# def equivalentClass_getspecific(request, pk):
+#     equivalentClass = EquivalentClass.objects.get(str(major_code+class_name)=pk)
+#     serializer = EquivalentClassSerializer(equivalentClass, many=False)
+#     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def equivalentClass_post(request, format=None):
+    serializer = EquivalentClassSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['PUT'])
+# def equivalentClass_put(request, pk):
+#     equivalentClass = EquivalentClass.objects.get(major_code+class_name=pk)
+#     equivalentClass = EquivalentClassSerializer(instance = equivalentClass, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['DELETE'])
+# def equivalentClass_delete(request, pk):
+#     equivalentClass = EquivalentClass.objects.get(major_code+class_name=pk)
+#     equivalentClass.delete()
+#     return Response('Item successfully deleted')
+
+
 
 
 

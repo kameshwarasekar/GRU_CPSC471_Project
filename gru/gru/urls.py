@@ -63,8 +63,24 @@ urlpatterns = [
     path('faculty-update/<str:pk>', views.faculty_put,name ="faculty-update"),
     path('faculty-delete/<str:pk>', views.faculty_delete,name ="faculty-delete"),
     
+    path('major/', views.major_get, name = "major"),
+    path('major/<str:pk>', views.major_getspecific, name = "major-specific"),
+    path('major-create/', views.major_post,name ="major-create"),
+    path('major-update/<str:pk>', views.major_put,name ="major-update"),
+    path('major-delete/<str:pk>', views.major_delete,name ="major-delete"),
     
-
+    path('entryRequirement/', views.entryRequirement_get, name = "entryRequirement"),
+    #path('entryRequirement/<str:pk>', views.entryRequirement_getspecific, name = "entryRequirement-specific"),
+    path('entryRequirement-create/', views.entryRequirement_post,name ="entryRequirement-create"),
+    # path('entryRequirement-update/<str:pk>', views.entryRequirement_put,name ="entryRequirement-update"),
+    # path('entryRequirement-delete/<str:pk>', views.entryRequirement_delete,name ="entryRequirement-delete"),
+    
+    path('equivalentClass/', views.equivalentClass_get, name = "equivalentClass"),
+    #path('equivalentClass/<str:pk>', views.equivalentClass_getspecific, name = "equivalentClass-specific"),
+    path('equivalentClass-create/', views.equivalentClass_post,name ="equivalentClass-create"),
+    # path('equivalentClass-update/<str:pk>', views.equivalentClass_put,name ="equivalentClass-update"),
+    # path('equivalentClass-delete/<str:pk>', views.equivalentClass_delete,name ="equivalentClass-delete"),
+    
 
 ]
 
