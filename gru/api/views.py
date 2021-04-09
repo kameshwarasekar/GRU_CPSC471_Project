@@ -168,7 +168,7 @@ def degree_post(request, format=None):
 @api_view(['PUT'])
 def degree_put(request, pk):
     degree = Degree.objects.get(name=pk)
-    degree = DegreeSerializer(instance = degree, data=request.data)
+    serializer = DegreeSerializer(instance = degree, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -206,7 +206,7 @@ def provides_post(request, format=None):
 @api_view(['PUT'])
 def provides_put(request, pk):
     provides = Provides.objects.get(provides_id=pk)
-    provides = ProvidesSerializer(instance = provides, data=request.data)
+    serializer = ProvidesSerializer(instance = provides, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -245,7 +245,7 @@ def faculty_post(request, format=None):
 @api_view(['PUT'])
 def faculty_put(request, pk):
     faculty = Faculty.objects.get(faculty_id=pk)
-    faculty = FacultySerializer(instance = faculty, data=request.data)
+    serializer = FacultySerializer(instance = faculty, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -284,7 +284,7 @@ def major_post(request, format=None):
 @api_view(['PUT'])
 def major_put(request, pk):
     major = Major.objects.get(major_code=pk)
-    major = MajorSerializer(instance = major, data=request.data)
+    serializer = MajorSerializer(instance = major, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -304,11 +304,11 @@ def entryRequirement_get(request):
     serializer = EntryRequirementSerializer(entryRequirement, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def entryRequirement_getspecific(request, pk):
-#     entryRequirement = EntryRequirement.objects.get(str(major_code+class_name)=pk)
-#     serializer = EntryRequirementSerializer(entryRequirement, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def entryRequirement_getspecific(request, pk):
+    entryRequirement = EntryRequirement.objects.get(major_code =pk)
+    serializer = EntryRequirementSerializer(entryRequirement, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -319,20 +319,20 @@ def entryRequirement_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def entryRequirement_put(request, pk):
-#     entryRequirement = EntryRequirement.objects.get(major_code+class_name=pk)
-#     entryRequirement = EntryRequirementSerializer(instance = entryRequirement, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def entryRequirement_put(request, pk):
+    entryRequirement = EntryRequirement.objects.get(major_code =pk)
+    serializer = EntryRequirementSerializer(instance = entryRequirement, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def entryRequirement_delete(request, pk):
-#     entryRequirement = EntryRequirement.objects.get(major_code+class_name=pk)
-#     entryRequirement.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def entryRequirement_delete(request, pk):
+    entryRequirement = EntryRequirement.objects.get(major_code =pk)
+    entryRequirement.delete()
+    return Response('Item successfully deleted')
 
 
 
@@ -362,7 +362,7 @@ def equivalentClass_post(request, format=None):
 # @api_view(['PUT'])
 # def equivalentClass_put(request, pk):
 #     equivalentClass = EquivalentClass.objects.get(major_code+class_name=pk)
-#     equivalentClass = EquivalentClassSerializer(instance = equivalentClass, data=request.data)
+#     serializer = EquivalentClassSerializer(instance = equivalentClass, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -403,7 +403,7 @@ def extraCurricularProgram_post(request, format=None):
 @api_view(['PUT'])
 def extraCurricularProgram_put(request, pk):
     extraCurricularProgram = ExtraCurricularProgram.objects.get(name=pk)
-    extraCurricularProgram = ExtraCurricularProgramSerializer(instance = extraCurricularProgram, data=request.data)
+    serializer = ExtraCurricularProgramSerializer(instance = extraCurricularProgram, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -443,7 +443,7 @@ def award_post(request, format=None):
 # @api_view(['PUT'])
 # def award_put(request, pk):
 #     award = Award.objects.get(major_code+class_name=pk)
-#     award = AwardSerializer(instance = award, data=request.data)
+#     serializer = AwardSerializer(instance = award, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -483,7 +483,7 @@ def extracurricularOfferings_post(request, format=None):
 # @api_view(['PUT'])
 # def extracurricularOfferings_put(request, pk):
 #     extracurricularOfferings = ExtracurricularOfferings.objects.get(major_code+class_name=pk)
-#     extracurricularOfferings = ExtracurricularOfferingsSerializer(instance = extracurricularProgram, data=request.data)
+#     serializer = ExtracurricularOfferingsSerializer(instance = extracurricularProgram, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -521,7 +521,7 @@ def staff_post(request, format=None):
 @api_view(['PUT'])
 def staff_put(request, pk):
     staff = Staff.objects.get(staff_id=pk)
-    staff = StaffSerializer(instance = staff, data=request.data)
+    serializer = StaffSerializer(instance = staff, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -559,7 +559,7 @@ def fieldOfStudy_post(request, format=None):
 # @api_view(['PUT'])
 # def fieldOfStudy_put(request, pk):
 #     fieldOfStudy = FieldOfStudy.objects.get(major_code+class_name=pk)
-#     fieldOfStudy = FieldOfStudySerializer(instance = fieldOfStudy, data=request.data)
+#     serializer = FieldOfStudySerializer(instance = fieldOfStudy, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -598,7 +598,7 @@ def course_post(request, format=None):
 # @api_view(['PUT'])
 # def course_put(request, pk):
 #     course = Course.objects.get(major_code+class_name=pk)
-#     course = CourseSerializer(instance = course, data=request.data)
+#     serializer = CourseSerializer(instance = course, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -637,7 +637,7 @@ def courseTeaching_post(request, format=None):
 # @api_view(['PUT'])
 # def courseTeaching_put(request, pk):
 #     courseTeaching = CourseTeaching.objects.get(major_code+class_name=pk)
-#     courseTeaching = CourseTeachingSerializer(instance = courseTeaching, data=request.data)
+#     serializer = CourseTeachingSerializer(instance = courseTeaching, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -676,7 +676,7 @@ def alumniHas_post(request, format=None):
 # @api_view(['PUT'])
 # def alumniHas_put(request, pk):
 #     alumniHas = AlumniHas.objects.get(major_code+class_name=pk)
-#     alumniHas = AlumniHasSerializer(instance = alumniHas, data=request.data)
+#     serializer = AlumniHasSerializer(instance = alumniHas, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -715,7 +715,7 @@ def ranking_post(request, format=None):
 @api_view(['PUT'])
 def ranking_put(request, pk):
     ranking = Ranking.objects.get(uni_code=pk)
-    ranking = RankingSerializer(instance = ranking, data=request.data)
+    serializer = RankingSerializer(instance = ranking, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -754,7 +754,7 @@ def gruUser_post(request, format=None):
 @api_view(['PUT'])
 def gruUser_put(request, pk):
     gruUser = GruUser.objects.get(user_id=pk)
-    gruUser = GruUserSerializer(instance = gruUser, data=request.data)
+    serializer = GruUserSerializer(instance = gruUser, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -794,7 +794,7 @@ def preference_post(request, format=None):
 # @api_view(['PUT'])
 # def preference_put(request, pk):
 #     preference = Preference.objects.get(major_code+class_name=pk)
-#     preference = PreferenceSerializer(instance = preference, data=request.data)
+#     serializer = PreferenceSerializer(instance = preference, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -833,7 +833,7 @@ def preferredUni_post(request, format=None):
 # @api_view(['PUT'])
 # def preferredUni_put(request, pk):
 #     preferredUni = PreferredUni.objects.get(major_code+class_name=pk)
-#     preferredUni = PreferredUniSerializer(instance = preferredUni, data=request.data)
+#     serializer = PreferredUniSerializer(instance = preferredUni, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -872,7 +872,7 @@ def preferenceContain_post(request, format=None):
 # @api_view(['PUT'])
 # def preferenceContain_put(request, pk):
 #     preferenceContain = PreferenceContain.objects.get(major_code+class_name=pk)
-#     preferenceContain = PreferenceContainSerializer(instance = preferenceContain, data=request.data)
+#     serializer = PreferenceContainSerializer(instance = preferenceContain, data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)

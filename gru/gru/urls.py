@@ -70,10 +70,10 @@ urlpatterns = [
     path('major-delete/<str:pk>', views.major_delete,name ="major-delete"),
     
     path('entryRequirement/', views.entryRequirement_get, name = "entryRequirement"),
-    #path('entryRequirement/<str:pk>', views.entryRequirement_getspecific, name = "entryRequirement-specific"),
+    path('entryRequirement/<str:pk>', views.entryRequirement_getspecific, name = "entryRequirement-specific"),
     path('entryRequirement-create/', views.entryRequirement_post,name ="entryRequirement-create"),
-    # path('entryRequirement-update/<str:pk>', views.entryRequirement_put,name ="entryRequirement-update"),
-    # path('entryRequirement-delete/<str:pk>', views.entryRequirement_delete,name ="entryRequirement-delete"),
+    path('entryRequirement-update/<str:pk>', views.entryRequirement_put,name ="entryRequirement-update"),
+    path('entryRequirement-delete/<str:pk>', views.entryRequirement_delete,name ="entryRequirement-delete"),
     
     path('equivalentClass/', views.equivalentClass_get, name = "equivalentClass"),
     #path('equivalentClass/<str:pk>', views.equivalentClass_getspecific, name = "equivalentClass-specific"),
