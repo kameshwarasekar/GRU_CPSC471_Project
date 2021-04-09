@@ -123,7 +123,42 @@ urlpatterns = [
     # path('courseTeaching-update/<str:pk>', views.courseTeaching_put,name ="courseTeaching-update"),
     # path('courseTeaching-delete/<str:pk>', views.courseTeaching_delete,name ="courseTeaching-delete"),
     
-
+    path('alumniHas/', views.alumniHas_get, name = "alumniHas"),
+    #path('alumniHas/<str:pk>', views.alumniHas_getspecific, name = "alumniHas-specific"),
+    path('alumniHas-create/', views.alumniHas_post,name ="alumniHas-create"),
+    # path('alumniHas-update/<str:pk>', views.alumniHas_put,name ="alumniHas-update"),
+    # path('alumniHas-delete/<str:pk>', views.alumniHas_delete,name ="alumniHas-delete"),
+    
+    path('ranking/', views.ranking_get, name = "ranking"),
+    path('ranking/<str:pk>', views.ranking_getspecific, name = "ranking-specific"),
+    path('ranking-create/', views.ranking_post,name ="ranking-create"),
+    path('ranking-update/<str:pk>', views.ranking_put,name ="ranking-update"),
+    path('ranking-delete/<str:pk>', views.ranking_delete,name ="ranking-delete"),
+    
+    path('gruUser/', views.gruUser_get, name = "gruUser"),
+    path('gruUser/<str:pk>', views.gruUser_getspecific, name = "gruUser-specific"),
+    path('gruUser-create/', views.gruUser_post,name ="gruUser-create"),
+    path('gruUser-update/<str:pk>', views.gruUser_put,name ="gruUser-update"),
+    path('gruUser-delete/<str:pk>', views.gruUser_delete,name ="gruUser-delete"),
+    
+    path('preference/', views.preference_get, name = "preference"),
+    #path('preference/<str:pk>', views.preference_getspecific, name = "preference-specific"),
+    path('preference-create/', views.preference_post,name ="preference-create"),
+    # path('preference-update/<str:pk>', views.preference_put,name ="preference-update"),
+    # path('preference-delete/<str:pk>', views.preference_delete,name ="preference-delete"),
+    
+    path('preferredUni/', views.preferredUni_get, name = "preferredUni"),
+    #path('preferredUni/<str:pk>', views.preferredUni_getspecific, name = "preferredUni-specific"),
+    path('preferredUni-create/', views.preferredUni_post,name ="preferredUni-create"),
+    # path('preferredUni-update/<str:pk>', views.preferredUni_put,name ="preferredUni-update"),
+    # path('preferredUni-delete/<str:pk>', views.preferredUni_delete,name ="preferredUni-delete"),
+    
+    path('preferenceContain/', views.preferenceContain_get, name = "preferenceContain"),
+    #path('preferenceContain/<str:pk>', views.preferenceContain_getspecific, name = "preferenceContain-specific"),
+    path('preferenceContain-create/', views.preferenceContain_post,name ="preferenceContain-create"),
+    # path('preferenceContain-update/<str:pk>', views.preferenceContain_put,name ="preferenceContain-update"),
+    # path('preferenceContain-delete/<str:pk>', views.preferenceContain_delete,name ="preferenceContain-delete"),
+    
 
 ]
 
