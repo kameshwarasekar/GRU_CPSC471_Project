@@ -22,15 +22,25 @@ from rest_framework.decorators import api_view
 #         serializer = AlumniSerializer(alumni, many=True)
 #         return Response(serializer.data)
 
+
+#---------------------------Alumni----------------------------------
+
+
 @api_view(['GET'])
-def alumniget(request):
+def alumni_get(request):
     alumni = Alumni.objects.all()
     serializer = AlumniSerializer(alumni, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def alumni_getspecific(request, pk):
+    alumni = Alumni.objects.get(alumni_id = pk)
+    serializer = AlumniSerializer(alumni, many=False)
+    return Response(serializer.data)
+
 
 @api_view(['POST'])
-def alumnipost(request, format=None):
+def alumni_post(request, format=None):
     serializer = AlumniSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -38,7 +48,7 @@ def alumnipost(request, format=None):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])
-def alumniput(request, pk):
+def alumni_put(request, pk):
     alumni = Alumni.objects.get(alumni_id=pk)
     serializer = AlumniSerializer(instance = alumni, data=request.data)
     if serializer.is_valid():
@@ -47,23 +57,63 @@ def alumniput(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
-def alumnidelete(request, pk):
+def alumni_delete(request, pk):
     alumni = Alumni.objects.get(alumni_id=pk)
     alumni.delete()
     return Response('Item successfully deleted')
 
 
-class ProfessorList(APIView):
-    def get(self, request):
-        professor = Professor.objects.all()
-        serializer = ProfessorSerializer(professor, many=True)
-        return Response(serializer.data)
-    def post(self,request):
-        serializer = ProfessorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#---------------------------Professor----------------------------------
+
+
+
+@api_view(['GET'])
+def professor_get(request):
+    professor = Professor.objects.all()
+    serializer = ProfessorSerializer(professor, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def professor_getspecific(request, pk):
+    professor = Professor.objects.get(prof_id = pk)
+    serializer = ProfessorSerializer(professor, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def professor_post(request, format=None):
+    serializer = ProfessorSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def professor_put(request, pk):
+    professor = Professor.objects.get(prof_id=pk)
+    serializer = ProfessorSerializer(instance = professor, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def professor_delete(request, pk):
+    professor = Professor.objects.get(prof_id=pk)
+    professor.delete()
+    return Response('Item successfully deleted')
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Create your views here.
 def index(request):
