@@ -99,6 +99,31 @@ urlpatterns = [
     # path('extracurricularOfferings-update/<str:pk>', views.extracurricularOfferings_put,name ="extracurricularOfferings-update"),
     # path('extracurricularOfferings-delete/<str:pk>', views.extracurricularOfferings_delete,name ="extracurricularOfferings-delete"),
     
+    path('staff/', views.staff_get, name = "staff"),
+    path('staff/<str:pk>', views.staff_getspecific, name = "staff-specific"),
+    path('staff-create/', views.staff_post,name ="staff-create"),
+    path('staff-update/<str:pk>', views.staff_put,name ="staff-update"),
+    path('staff-delete/<str:pk>', views.staff_delete,name ="staff-delete"),
+    
+    path('fieldOfStudy/', views.fieldOfStudy_get, name = "fieldOfStudy"),
+    #path('fieldOfStudy/<str:pk>', views.fieldOfStudy_getspecific, name = "fieldOfStudy-specific"),
+    path('fieldOfStudy-create/', views.fieldOfStudy_post,name ="fieldOfStudy-create"),
+    # path('fieldOfStudy-update/<str:pk>', views.fieldOfStudy_put,name ="fieldOfStudy-update"),
+    # path('fieldOfStudy-delete/<str:pk>', views.fieldOfStudy_delete,name ="fieldOfStudy-delete"),
+    
+    path('course/', views.course_get, name = "course"),
+    #path('course/<str:pk>', views.course_getspecific, name = "course-specific"),
+    path('course-create/', views.course_post,name ="course-create"),
+    # path('course-update/<str:pk>', views.course_put,name ="course-update"),
+    # path('course-delete/<str:pk>', views.course_delete,name ="course-delete"),
+    
+    path('courseTeaching/', views.courseTeaching_get, name = "courseTeaching"),
+    #path('courseTeaching/<str:pk>', views.courseTeaching_getspecific, name = "courseTeaching-specific"),
+    path('courseTeaching-create/', views.courseTeaching_post,name ="courseTeaching-create"),
+    # path('courseTeaching-update/<str:pk>', views.courseTeaching_put,name ="courseTeaching-update"),
+    # path('courseTeaching-delete/<str:pk>', views.courseTeaching_delete,name ="courseTeaching-delete"),
+    
+
 
 ]
 
