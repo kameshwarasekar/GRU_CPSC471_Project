@@ -344,11 +344,11 @@ def equivalentClass_get(request):
     serializer = EquivalentClassSerializer(equivalentClass, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def equivalentClass_getspecific(request, pk):
-#     equivalentClass = EquivalentClass.objects.get(str(major_code+class_name)=pk)
-#     serializer = EquivalentClassSerializer(equivalentClass, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def equivalentClass_getspecific(request, pk):
+    equivalentClass = EquivalentClass.objects.get(major_code=pk)
+    serializer = EquivalentClassSerializer(equivalentClass, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -359,20 +359,20 @@ def equivalentClass_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def equivalentClass_put(request, pk):
-#     equivalentClass = EquivalentClass.objects.get(major_code+class_name=pk)
-#     serializer = EquivalentClassSerializer(instance = equivalentClass, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def equivalentClass_put(request, pk):
+    equivalentClass = EquivalentClass.objects.get(major_code=pk)
+    serializer = EquivalentClassSerializer(instance = equivalentClass, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def equivalentClass_delete(request, pk):
-#     equivalentClass = EquivalentClass.objects.get(major_code+class_name=pk)
-#     equivalentClass.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def equivalentClass_delete(request, pk):
+    equivalentClass = EquivalentClass.objects.get(major_code=pk)
+    equivalentClass.delete()
+    return Response('Item successfully deleted')
 
 
 
@@ -425,11 +425,11 @@ def award_get(request):
     serializer = AwardSerializer(award, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def award_getspecific(request, pk):
-#     award = Award.objects.get(str(major_code+class_name)=pk)
-#     serializer = AwardSerializer(award, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def award_getspecific(request, pk):
+    award = Award.objects.get(award_name=pk)
+    serializer = AwardSerializer(award, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -440,20 +440,20 @@ def award_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def award_put(request, pk):
-#     award = Award.objects.get(major_code+class_name=pk)
-#     serializer = AwardSerializer(instance = award, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def award_put(request, pk):
+    award = Award.objects.get(award_name=pk)
+    serializer = AwardSerializer(instance = award, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def award_delete(request, pk):
-#     award = Award.objects.get(major_code+class_name=pk)
-#     award.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def award_delete(request, pk):
+    award = Award.objects.get(award_name=pk)
+    award.delete()
+    return Response('Item successfully deleted')
 
 
 
@@ -465,11 +465,11 @@ def extracurricularOfferings_get(request):
     serializer = ExtracurricularOfferingsSerializer(extracurricularOfferings, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def extracurricularOfferings_getspecific(request, pk):
-#     extracurricularOfferings = ExtracurricularOfferings.objects.get(str(major_code+class_name)=pk)
-#     serializer = ExtracurricularOfferingsSerializer(extracurricularOfferings, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def extracurricularOfferings_getspecific(request, pk):
+    extracurricularOfferings = ExtracurricularOfferings.objects.get(excurricular_name=pk)
+    serializer = ExtracurricularOfferingsSerializer(extracurricularOfferings, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -480,20 +480,20 @@ def extracurricularOfferings_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def extracurricularOfferings_put(request, pk):
-#     extracurricularOfferings = ExtracurricularOfferings.objects.get(major_code+class_name=pk)
-#     serializer = ExtracurricularOfferingsSerializer(instance = extracurricularProgram, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def extracurricularOfferings_put(request, pk):
+    extracurricularOfferings = ExtracurricularOfferings.objects.get(excurricular_name=pk)
+    serializer = ExtracurricularOfferingsSerializer(instance = extracurricularProgram, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def extracurricularOfferings_delete(request, pk):
-#     extracurricularOfferings = ExtracurricularOfferings.objects.get(major_code+class_name=pk)
-#     extracurricularOfferings.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def extracurricularOfferings_delete(request, pk):
+    extracurricularOfferings = ExtracurricularOfferings.objects.get(excurricular_name=pk)
+    extracurricularOfferings.delete()
+    return Response('Item successfully deleted')
 
 #---------------------------Staff----------------------------------
 
@@ -541,11 +541,11 @@ def fieldOfStudy_get(request):
     serializer = FieldOfStudySerializer(fieldOfStudy, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def fieldOfStudy_getspecific(request, pk):
-#     fieldOfStudy = FieldOfStudy.objects.get(str(major_code+class_name)=pk)
-#     serializer = FieldOfStudySerializer(fieldOfStudy, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def fieldOfStudy_getspecific(request, pk):
+    fieldOfStudy = FieldOfStudy.objects.get(for_id=pk)
+    serializer = FieldOfStudySerializer(fieldOfStudy, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -556,20 +556,20 @@ def fieldOfStudy_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def fieldOfStudy_put(request, pk):
-#     fieldOfStudy = FieldOfStudy.objects.get(major_code+class_name=pk)
-#     serializer = FieldOfStudySerializer(instance = fieldOfStudy, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def fieldOfStudy_put(request, pk):
+    fieldOfStudy = FieldOfStudy.objects.get(for_id=pk)
+    serializer = FieldOfStudySerializer(instance = fieldOfStudy, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def fieldOfStudy_delete(request, pk):
-#     fieldOfStudy = FieldOfStudy.objects.get(major_code+class_name=pk)
-#     fieldOfStudy.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def fieldOfStudy_delete(request, pk):
+    fieldOfStudy = FieldOfStudy.objects.get(for_id=pk)
+    fieldOfStudy.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------Course----------------------------------
@@ -580,11 +580,11 @@ def course_get(request):
     serializer = CourseSerializer(course, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def course_getspecific(request, pk):
-#     course = Course.objects.get(str(major_code+class_name)=pk)
-#     serializer = CourseSerializer(course, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def course_getspecific(request, pk):
+    course = Course.objects.get(course_code=pk)
+    serializer = CourseSerializer(course, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -595,20 +595,20 @@ def course_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def course_put(request, pk):
-#     course = Course.objects.get(major_code+class_name=pk)
-#     serializer = CourseSerializer(instance = course, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def course_put(request, pk):
+    course = Course.objects.get(course_code=pk)
+    serializer = CourseSerializer(instance = course, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def course_delete(request, pk):
-#     course = Course.objects.get(major_code+class_name=pk)
-#     course.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def course_delete(request, pk):
+    course = Course.objects.get(course_code=pk)
+    course.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------CourseTeaching----------------------------------
@@ -619,11 +619,11 @@ def courseTeaching_get(request):
     serializer = CourseTeachingSerializer(courseTeaching, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def courseTeaching_getspecific(request, pk):
-#     courseTeaching = CourseTeaching.objects.get(str(major_code+class_name)=pk)
-#     serializer = CourseTeachingSerializer(courseTeaching, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def courseTeaching_getspecific(request, pk):
+    courseTeaching = CourseTeaching.objects.get(course_code=pk)
+    serializer = CourseTeachingSerializer(courseTeaching, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -634,20 +634,20 @@ def courseTeaching_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def courseTeaching_put(request, pk):
-#     courseTeaching = CourseTeaching.objects.get(major_code+class_name=pk)
-#     serializer = CourseTeachingSerializer(instance = courseTeaching, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def courseTeaching_put(request, pk):
+    courseTeaching = CourseTeaching.objects.get(course_code=pk)
+    serializer = CourseTeachingSerializer(instance = courseTeaching, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def courseTeaching_delete(request, pk):
-#     courseTeaching = CourseTeaching.objects.get(major_code+class_name=pk)
-#     courseTeaching.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def courseTeaching_delete(request, pk):
+    courseTeaching = CourseTeaching.objects.get(course_code=pk)
+    courseTeaching.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------AlumniHas----------------------------------
@@ -658,11 +658,11 @@ def alumniHas_get(request):
     serializer = AlumniHasSerializer(alumniHas, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def alumniHas_getspecific(request, pk):
-#     alumniHas = AlumniHas.objects.get(str(major_code+class_name)=pk)
-#     serializer = AlumniHasSerializer(alumniHas, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def alumniHas_getspecific(request, pk):
+    alumniHas = AlumniHas.objects.get(alumni_id=pk)
+    serializer = AlumniHasSerializer(alumniHas, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -673,20 +673,20 @@ def alumniHas_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def alumniHas_put(request, pk):
-#     alumniHas = AlumniHas.objects.get(major_code+class_name=pk)
-#     serializer = AlumniHasSerializer(instance = alumniHas, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def alumniHas_put(request, pk):
+    alumniHas = AlumniHas.objects.get(alumni_id=pk)
+    serializer = AlumniHasSerializer(instance = alumniHas, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def alumniHas_delete(request, pk):
-#     alumniHas = AlumniHas.objects.get(major_code+class_name=pk)
-#     alumniHas.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def alumniHas_delete(request, pk):
+    alumniHas = AlumniHas.objects.get(alumni_id=pk)
+    alumniHas.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------Ranking----------------------------------
@@ -776,11 +776,11 @@ def preference_get(request):
     serializer = PreferenceSerializer(preference, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def preference_getspecific(request, pk):
-#     preference = Preference.objects.get(str(major_code+class_name)=pk)
-#     serializer = PreferenceSerializer(preference, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def preference_getspecific(request, pk):
+    preference = Preference.objects.get(pref_id=pk)
+    serializer = PreferenceSerializer(preference, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -791,20 +791,20 @@ def preference_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def preference_put(request, pk):
-#     preference = Preference.objects.get(major_code+class_name=pk)
-#     serializer = PreferenceSerializer(instance = preference, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def preference_put(request, pk):
+    preference = Preference.objects.get(pref_id=pk)
+    serializer = PreferenceSerializer(instance = preference, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def preference_delete(request, pk):
-#     preference = Preference.objects.get(major_code+class_name=pk)
-#     preference.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def preference_delete(request, pk):
+    preference = Preference.objects.get(pref_id=pk)
+    preference.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------PreferredUni----------------------------------
@@ -815,11 +815,11 @@ def preferredUni_get(request):
     serializer = PreferredUniSerializer(preferredUni, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def preferredUni_getspecific(request, pk):
-#     preferredUni = PreferredUni.objects.get(str(major_code+class_name)=pk)
-#     serializer = PreferredUniSerializer(preferredUni, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def preferredUni_getspecific(request, pk):
+    preferredUni = PreferredUni.objects.get(pref_id=pk)
+    serializer = PreferredUniSerializer(preferredUni, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -830,20 +830,20 @@ def preferredUni_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def preferredUni_put(request, pk):
-#     preferredUni = PreferredUni.objects.get(major_code+class_name=pk)
-#     serializer = PreferredUniSerializer(instance = preferredUni, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def preferredUni_put(request, pk):
+    preferredUni = PreferredUni.objects.get(pref_id=pk)
+    serializer = PreferredUniSerializer(instance = preferredUni, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def preferredUni_delete(request, pk):
-#     preferredUni = PreferredUni.objects.get(major_code+class_name=pk)
-#     preferredUni.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def preferredUni_delete(request, pk):
+    preferredUni = PreferredUni.objects.get(pref_id=pk)
+    preferredUni.delete()
+    return Response('Item successfully deleted')
 
 
 #---------------------------PreferenceContain----------------------------------
@@ -854,11 +854,11 @@ def preferenceContain_get(request):
     serializer = PreferenceContainSerializer(preferenceContain, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def preferenceContain_getspecific(request, pk):
-#     preferenceContain = PreferenceContain.objects.get(str(major_code+class_name)=pk)
-#     serializer = PreferenceContainSerializer(preferenceContain, many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def preferenceContain_getspecific(request, pk):
+    preferenceContain = PreferenceContain.objects.get(pref_id=pk)
+    serializer = PreferenceContainSerializer(preferenceContain, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -869,20 +869,20 @@ def preferenceContain_post(request, format=None):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['PUT'])
-# def preferenceContain_put(request, pk):
-#     preferenceContain = PreferenceContain.objects.get(major_code+class_name=pk)
-#     serializer = PreferenceContainSerializer(instance = preferenceContain, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+def preferenceContain_put(request, pk):
+    preferenceContain = PreferenceContain.objects.get(pref_id=pk)
+    serializer = PreferenceContainSerializer(instance = preferenceContain, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['DELETE'])
-# def preferenceContain_delete(request, pk):
-#     preferenceContain = PreferenceContain.objects.get(major_code+class_name=pk)
-#     preferenceContain.delete()
-#     return Response('Item successfully deleted')
+@api_view(['DELETE'])
+def preferenceContain_delete(request, pk):
+    preferenceContain = PreferenceContain.objects.get(pref_id=pk)
+    preferenceContain.delete()
+    return Response('Item successfully deleted')
 
 
 
