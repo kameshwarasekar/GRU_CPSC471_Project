@@ -37,6 +37,11 @@ urlpatterns = [
     path('professor-create/', views.professor_post,name ="professor-create"),
     path('professor-update/<str:pk>', views.professor_put,name ="professor-update"),
     path('professor-delete/<str:pk>', views.professor_delete,name ="professor-delete"),
+    path('university/', views.university_get, name = "university"),
+    path('university/<str:pk>', views.university_getspecific, name = "university-specific"),
+    path('university-create/', views.university_post,name ="university-create"),
+    path('university-update/<str:pk>', views.university_put,name ="university-update"),
+    path('university-delete/<str:pk>', views.university_delete,name ="university-delete"),
     
 ]
 

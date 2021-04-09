@@ -6,7 +6,7 @@ from  django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import AlumniSerializer, ProfessorSerializer
+from .serializers import *
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from django.http import Http404
@@ -65,8 +65,6 @@ def alumni_delete(request, pk):
 
 #---------------------------Professor----------------------------------
 
-
-
 @api_view(['GET'])
 def professor_get(request):
     professor = Professor.objects.all()
@@ -103,6 +101,44 @@ def professor_delete(request, pk):
     professor.delete()
     return Response('Item successfully deleted')
 
+
+#---------------------------University----------------------------------
+
+@api_view(['GET'])
+def university_get(request):
+    university = University.objects.all()
+    serializer = UniversitySerializer(university, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def university_getspecific(request, pk):
+    university = University.objects.get(name = pk)
+    serializer = UniversitySerializer(university, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def university_post(request, format=None):
+    serializer = UniversitySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def university_put(request, pk):
+    university = University.objects.get(name=pk)
+    serializer = UniversitySerializer(instance = university, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def university_delete(request, pk):
+    university = University.objects.get(prof_id=pk)
+    university.delete()
+    return Response('Item successfully deleted')
 
 
 
