@@ -81,6 +81,24 @@ urlpatterns = [
     # path('equivalentClass-update/<str:pk>', views.equivalentClass_put,name ="equivalentClass-update"),
     # path('equivalentClass-delete/<str:pk>', views.equivalentClass_delete,name ="equivalentClass-delete"),
     
+    path('extraCurricularProgram/', views.extraCurricularProgram_get, name = "extraCurricularProgram"),
+    path('extraCurricularProgram/<str:pk>', views.extraCurricularProgram_getspecific, name = "extraCurricularProgram-specific"),
+    path('extraCurricularProgram-create/', views.extraCurricularProgram_post,name ="extraCurricularProgram-create"),
+    path('extraCurricularProgram-update/<str:pk>', views.extraCurricularProgram_put,name ="extraCurricularProgram-update"),
+    path('extraCurricularProgram-delete/<str:pk>', views.extraCurricularProgram_delete,name ="extraCurricularProgram-delete"),
+    
+    path('award/', views.award_get, name = "award"),
+    #path('award/<str:pk>', views.award_getspecific, name = "award-specific"),
+    path('award-create/', views.award_post,name ="award-create"),
+    # path('award-update/<str:pk>', views.award_put,name ="award-update"),
+    # path('award-delete/<str:pk>', views.award_delete,name ="award-delete"),
+    
+    path('extracurricularOfferings/', views.extracurricularOfferings_get, name = "extracurricularOfferings"),
+    #path('extracurricularOfferings/<str:pk>', views.extracurricularOfferings_getspecific, name = "extracurricularOfferings-specific"),
+    path('extracurricularOfferings-create/', views.extracurricularOfferings_post,name ="extracurricularOfferings-create"),
+    # path('extracurricularOfferings-update/<str:pk>', views.extracurricularOfferings_put,name ="extracurricularOfferings-update"),
+    # path('extracurricularOfferings-delete/<str:pk>', views.extracurricularOfferings_delete,name ="extracurricularOfferings-delete"),
+    
 
 ]
 

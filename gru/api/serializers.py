@@ -58,7 +58,7 @@ class ExtraCurricularProgramSerializer(serializers.ModelSerializer):
         model = ExtraCurricularProgram
         fields = '__all__'               
 
-class ExtraCurricularOfferingsSerializer(serializers.ModelSerializer):
+class ExtracurricularOfferingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExtracurricularOfferings
         fields = '__all__'

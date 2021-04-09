@@ -377,6 +377,127 @@ def equivalentClass_post(request, format=None):
 
 
 
+#---------------------------ExtraCurricularProgram----------------------------------
+
+@api_view(['GET'])
+def extraCurricularProgram_get(request):
+    extraCurricularProgram = ExtraCurricularProgram.objects.all()
+    serializer = ExtraCurricularProgramSerializer(extraCurricularProgram, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def extraCurricularProgram_getspecific(request, pk):
+    extraCurricularProgram = ExtraCurricularProgram.objects.get(name = pk)
+    serializer = ExtraCurricularProgramSerializer(extraCurricularProgram, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def extraCurricularProgram_post(request, format=None):
+    serializer = ExtraCurricularProgramSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def extraCurricularProgram_put(request, pk):
+    extraCurricularProgram = ExtraCurricularProgram.objects.get(name=pk)
+    extraCurricularProgram = ExtraCurricularProgramSerializer(instance = extraCurricularProgram, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def extraCurricularProgram_delete(request, pk):
+    extraCurricularProgram = ExtraCurricularProgram.objects.get(name=pk)
+    extraCurricularProgram.delete()
+    return Response('Item successfully deleted')
+
+
+
+#---------------------------Award----------------------------------
+
+@api_view(['GET'])
+def award_get(request):
+    award = Award.objects.all()
+    serializer = AwardSerializer(award, many=True)
+    return Response(serializer.data)
+
+# @api_view(['GET'])
+# def award_getspecific(request, pk):
+#     award = Award.objects.get(str(major_code+class_name)=pk)
+#     serializer = AwardSerializer(award, many=False)
+#     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def award_post(request, format=None):
+    serializer = AwardSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['PUT'])
+# def award_put(request, pk):
+#     award = Award.objects.get(major_code+class_name=pk)
+#     award = AwardSerializer(instance = award, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['DELETE'])
+# def award_delete(request, pk):
+#     award = Award.objects.get(major_code+class_name=pk)
+#     award.delete()
+#     return Response('Item successfully deleted')
+
+
+
+#---------------------------ExtracurricularOfferings----------------------------------
+
+@api_view(['GET'])
+def extracurricularOfferings_get(request):
+    extracurricularOfferings = ExtracurricularOfferings.objects.all()
+    serializer = ExtracurricularOfferingsSerializer(extracurricularOfferings, many=True)
+    return Response(serializer.data)
+
+# @api_view(['GET'])
+# def extracurricularOfferings_getspecific(request, pk):
+#     extracurricularOfferings = ExtracurricularOfferings.objects.get(str(major_code+class_name)=pk)
+#     serializer = ExtracurricularOfferingsSerializer(extracurricularOfferings, many=False)
+#     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def extracurricularOfferings_post(request, format=None):
+    serializer = ExtracurricularOfferingsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['PUT'])
+# def extracurricularOfferings_put(request, pk):
+#     extracurricularOfferings = ExtracurricularOfferings.objects.get(major_code+class_name=pk)
+#     extracurricularOfferings = ExtracurricularOfferingsSerializer(instance = extracurricularProgram, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['DELETE'])
+# def extracurricularOfferings_delete(request, pk):
+#     extracurricularOfferings = ExtracurricularOfferings.objects.get(major_code+class_name=pk)
+#     extracurricularOfferings.delete()
+#     return Response('Item successfully deleted')
+
+
+
+
 
 
 
