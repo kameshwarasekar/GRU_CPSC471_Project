@@ -27,10 +27,10 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('alumni/', views.get, name = "alumni"),
-    path('alumni-create/', views.post,name ="alumni-create"),
-    path('alumni-update/<str:pk>', views.put,name ="alumni-update"),
-    path('alumni-delete/<str:pk>', views.delete,name ="alumni-delete"),
+    path('alumni/', views.alumniget, name = "alumni"),
+    path('alumni-create/', views.alumnipost,name ="alumni-create"),
+    path('alumni-update/<str:pk>', views.alumniput,name ="alumni-update"),
+    path('alumni-delete/<str:pk>', views.alumnidelete,name ="alumni-delete"),
     url(r'^professor/', views.ProfessorList.as_view()),
 ]
 

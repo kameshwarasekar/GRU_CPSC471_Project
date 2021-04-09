@@ -23,14 +23,14 @@ from rest_framework.decorators import api_view
 #         return Response(serializer.data)
 
 @api_view(['GET'])
-def get(request):
+def alumniget(request):
     alumni = Alumni.objects.all()
     serializer = AlumniSerializer(alumni, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def post(request, format=None):
+def alumnipost(request, format=None):
     serializer = AlumniSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -38,7 +38,7 @@ def post(request, format=None):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])
-def put(request, pk):
+def alumniput(request, pk):
     alumni = Alumni.objects.get(alumni_id=pk)
     serializer = AlumniSerializer(instance = alumni, data=request.data)
     if serializer.is_valid():
@@ -47,7 +47,7 @@ def put(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
-def delete(request, pk):
+def alumnidelete(request, pk):
     alumni = Alumni.objects.get(alumni_id=pk)
     alumni.delete()
     return Response('Item successfully deleted')
