@@ -180,6 +180,87 @@ def degree_delete(request, pk):
     degree.delete()
     return Response('Item successfully deleted')
 
+#---------------------------Provides----------------------------------
+
+@api_view(['GET'])
+def provides_get(request):
+    provides = Provides.objects.all()
+    serializer = ProvidesSerializer(provides, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def provides_getspecific(request, pk):
+    provides = Provides.objects.get(provides_id = pk)
+    serializer = ProvidesSerializer(provides, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def provides_post(request, format=None):
+    serializer =ProvidesSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def provides_put(request, pk):
+    provides = Provides.objects.get(provides_id=pk)
+    provides = ProvidesSerializer(instance = provides, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def provides_delete(request, pk):
+    provides = Provides.objects.get(provides_id=pk)
+    provides.delete()
+    return Response('Item successfully deleted')
+
+
+#---------------------------Faculty----------------------------------
+
+@api_view(['GET'])
+def faculty_get(request):
+    faculty = Faculty.objects.all()
+    serializer = FacultySerializer(faculty, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def faculty_getspecific(request, pk):
+    faculty = Faculty.objects.get(faculty_id = pk)
+    serializer = FacultySerializer(faculty, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def faculty_post(request, format=None):
+    serializer = FacultySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def faculty_put(request, pk):
+    faculty = Faculty.objects.get(faculty_id=pk)
+    faculty = FacultySerializer(instance = faculty, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def faculty_delete(request, pk):
+    faculty = Faculty.objects.get(faculty_id=pk)
+    faculty.delete()
+    return Response('Item successfully deleted')
+
+
+
+
+
 
 
 

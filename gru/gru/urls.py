@@ -32,22 +32,40 @@ urlpatterns = [
     path('alumni-create/', views.alumni_post,name ="alumni-create"),
     path('alumni-update/<str:pk>', views.alumni_put,name ="alumni-update"),
     path('alumni-delete/<str:pk>', views.alumni_delete,name ="alumni-delete"),
+
     path('professor/', views.professor_get, name = "professor"),
     path('professor/<str:pk>', views.professor_getspecific, name = "professor-specific"),
     path('professor-create/', views.professor_post,name ="professor-create"),
     path('professor-update/<str:pk>', views.professor_put,name ="professor-update"),
     path('professor-delete/<str:pk>', views.professor_delete,name ="professor-delete"),
+
     path('university/', views.university_get, name = "university"),
     path('university/<str:pk>', views.university_getspecific, name = "university-specific"),
     path('university-create/', views.university_post,name ="university-create"),
     path('university-update/<str:pk>', views.university_put,name ="university-update"),
     path('university-delete/<str:pk>', views.university_delete,name ="university-delete"),
+
     path('degree/', views.degree_get, name = "degree"),
     path('degree/<str:pk>', views.degree_getspecific, name = "degree-specific"),
     path('degree-create/', views.degree_post,name ="degree-create"),
     path('degree-update/<str:pk>', views.degree_put,name ="degree-update"),
     path('degree-delete/<str:pk>', views.degree_delete,name ="degree-delete"),
+
+    path('provides/', views.provides_get, name = "provides"),
+    path('provides/<str:pk>', views.provides_getspecific, name = "provides-specific"),
+    path('provides-create/', views.provides_post,name ="provides-create"),
+    path('provides-update/<str:pk>', views.provides_put,name ="provides-update"),
+    path('provides-delete/<str:pk>', views.provides_delete,name ="provides-delete"),
     
+    path('faculty/', views.faculty_get, name = "faculty"),
+    path('faculty/<str:pk>', views.faculty_getspecific, name = "faculty-specific"),
+    path('faculty-create/', views.faculty_post,name ="faculty-create"),
+    path('faculty-update/<str:pk>', views.faculty_put,name ="faculty-update"),
+    path('faculty-delete/<str:pk>', views.faculty_delete,name ="faculty-delete"),
+    
+    
+
+
 ]
 
 urlpatterns += [
