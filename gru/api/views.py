@@ -136,11 +136,49 @@ def university_put(request, pk):
 
 @api_view(['DELETE'])
 def university_delete(request, pk):
-    university = University.objects.get(prof_id=pk)
+    university = University.objects.get(name=pk)
     university.delete()
     return Response('Item successfully deleted')
 
 
+
+#---------------------------Degree----------------------------------
+
+@api_view(['GET'])
+def degree_get(request):
+    degree = Degree.objects.all()
+    serializer = DegreeSerializer(degree, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def degree_getspecific(request, pk):
+    degree = Degree.objects.get(name = pk)
+    serializer = DegreeSerializer(degree, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def degree_post(request, format=None):
+    serializer = DegreeSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def degree_put(request, pk):
+    degree = Degree.objects.get(name=pk)
+    degree = DegreeSerializer(instance = degree, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def degree_delete(request, pk):
+    degree = Degree.objects.get(name=pk)
+    degree.delete()
+    return Response('Item successfully deleted')
 
 
 

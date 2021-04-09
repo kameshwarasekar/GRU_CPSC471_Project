@@ -42,6 +42,11 @@ urlpatterns = [
     path('university-create/', views.university_post,name ="university-create"),
     path('university-update/<str:pk>', views.university_put,name ="university-update"),
     path('university-delete/<str:pk>', views.university_delete,name ="university-delete"),
+    path('degree/', views.degree_get, name = "degree"),
+    path('degree/<str:pk>', views.degree_getspecific, name = "degree-specific"),
+    path('degree-create/', views.degree_post,name ="degree-create"),
+    path('degree-update/<str:pk>', views.degree_put,name ="degree-update"),
+    path('degree-delete/<str:pk>', views.degree_delete,name ="degree-delete"),
     
 ]
 
