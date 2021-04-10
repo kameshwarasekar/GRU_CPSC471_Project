@@ -6,7 +6,7 @@
 <ul>
     {% for ranking in ranking_list %}
     <li>
-        <a href="{{ ranking.get_absolute_url }}">{{ ranking.uni_name}}</a>
+        <a href="{{ ranking.get_absolute_url }}">{{ ranking.uni_name}}</a> (QS World Ranking: {{ ranking.rank }})
     </li>
     {% endfor %}
 </ul>

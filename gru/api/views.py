@@ -935,6 +935,12 @@ class ProfessorListView(generic.ListView):
 class ProfessorDetailView(generic.DetailView):
     model = Professor
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['university'] = University.objects.get(name=self.object.uni_name)
+        context['fieldOfStudy'] = FieldOfStudy.objects.filter(prof_id=self.object.prof_id)
+        return context
+
 
 class RankingListView(generic.ListView):
     model = Ranking
@@ -942,3 +948,8 @@ class RankingListView(generic.ListView):
 
 class RankingDetailView(generic.DetailView):
     model = Ranking
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['university'] = University.objects.get(name=self.object.uni_name)
+        return context
