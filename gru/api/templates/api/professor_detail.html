@@ -6,7 +6,7 @@
 <p><strong>Professor ID:</strong> {{ professor.prof_id }}</a></p>
 <p><strong>Rating:</strong> {{ professor.rating }}</p>
 <p><strong>Works At:</strong> <a href="{{ university.get_absolute_url }}">{{ university.name}}</a></p>
-<p><strong>Faculty ID:</strong> {{ professor.faculty_id }}</p>
+<p><strong>Faculty:</strong> {{ faculty.name }}</p>
 <p><strong>Fields of Study:</strong>
     <ul>
         {% for fos in fieldOfStudy %}

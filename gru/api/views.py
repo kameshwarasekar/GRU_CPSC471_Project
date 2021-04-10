@@ -926,7 +926,29 @@ class UniversityListView(generic.ListView):
 
 class UniversityDetailView(generic.DetailView):
     model = University
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        provs = Provides.objects.filter(uni_name=self.object.name)
+        fac = Faculty.objects.filter(uni_name=self.object.name)
+        maj = Major.objects.filter(faculty_id__in=fac.values_list('faculty_id'))
 
+        exco = ExtracurricularOfferings.objects.filter(uni_name=self.object.name)
+        excp = ExtraCurricularProgram.objects.filter(name__in=exco.values_list('excurricular_name'))
+
+        club = Club.objects.filter(name__in=excp.values_list('name'))
+
+        sport = Sport.objects.filter(name__in=excp.values_list('name'))
+
+        award = Award.objects.filter(name__in=sport.values_list('name'))
+
+        context['degrees'] = Degree.objects.filter(name__in=provs.values_list('degree_name'))
+        context['faculties'] = fac
+        context['majors'] = maj
+        context['clubs'] = club
+        context['sports'] = sport
+        context['awards'] = award
+        return context
 
 class ProfessorListView(generic.ListView):
     model = Professor
@@ -939,6 +961,7 @@ class ProfessorDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['university'] = University.objects.get(name=self.object.uni_name)
         context['fieldOfStudy'] = FieldOfStudy.objects.filter(prof_id=self.object.prof_id)
+        context['faculty'] = Faculty.objects.get(faculty_id=self.object.faculty_id)
         return context
 
 
