@@ -923,6 +923,16 @@ def option(request):
 class UniversityListView(generic.ListView):
     model = University
 
+    def get_queryset(self):
+        queryset = University.objects.all()
+        if self.request.method == 'GET':
+            filtersLoc = self.request.GET.get('filter', '')
+            filterTui = self.request.GET.get('tuition', 'false')
+            queryset = queryset.filter(location__contains=self.request.GET.get('filter', ''))
+            if filterTui == 'true':
+                queryset = queryset.order_by('finances')
+        return queryset
+
 
 class UniversityDetailView(generic.DetailView):
     model = University

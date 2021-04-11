@@ -2,6 +2,18 @@
 
 {% block content %}
 <h1>Uni List</h1>
+<form method="GET">
+    <input type="radio" id="Canada" name="filter" value="Canada">
+    <label for="Canada">Canada</label>
+    <input type="radio" id="United States" name="filter" value="United States">
+    <label for="Canada">United States</label>
+    <input type="radio" id="Clear Filter" name="filter" value="">
+    <label for="Clear Filter">North America</label>
+    <input type="radio" id="Low Tuition" name="tuition" value="true">
+    <label for="Canada">Lowest Tuiton</label>
+    <input type="submit" value="Filter">
+</form>
+
 {% if university_list %}
 <ul>
     {% for university in university_list %}
