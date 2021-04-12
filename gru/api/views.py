@@ -5,27 +5,15 @@ from django.views import generic
 
 # Create your views here.
 def index(request):
-    # num_prof = Professor.objects.all().count()
-    # num_uni = University.objects.all().count()
-    # num_course = Course.objects.all().count()
-    # context = {
-    #     'num_prof': num_prof,
-    #     'num_uni': num_uni,
-    #     'num_course': num_course
-    # }
     return render(request, 'index.html')
 
 
 def option(request):
-    # num_prof = Professor.objects.all().count()
-    # num_uni = University.objects.all().count()
-    # num_course = Course.objects.all().count()
-    # context = {
-    #     'num_prof': num_prof,
-    #     'num_uni': num_uni,
-    #     'num_course': num_course
-    # }
     return render(request, 'option.html')
+
+
+def profile(request):
+    return render(request, 'profile.html')
 
 
 class UniversityListView(generic.ListView):
