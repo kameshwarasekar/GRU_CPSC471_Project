@@ -11,9 +11,11 @@
     <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" id="prof">
         Browse Professors
     </button>
-    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px">
-        View Account(For Login Users Only)
+    {% if user.is_authenticated %}
+    <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" id="view">
+        View Account
     </button>
+    {% endif %}
 </div>
 <script>
     document.getElementById("uni").addEventListener("click", function () {
@@ -24,6 +26,9 @@
     });
     document.getElementById("prof").addEventListener("click", function () {
         window.location.href = "{% url 'professor' %}";
+    });
+    document.getElementById("view").addEventListener("click", function () {
+        window.location.href = "{% url 'profile' %}";
     });
 </script>
 {% endblock %}

@@ -19,11 +19,19 @@
 <button type="button" class="btn btn-primary btn-lg" style="position: absolute; right: 550px; top: 150px" id="login">
     Login Options
 </button>
-
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-secondary btn-lg" style="position: absolute; right: 555px; top: 250px"
+    id="noLogin">
+    View options
+</button>
+{% else %}
 <button type="button" class="btn btn-secondary btn-lg" style="position: absolute; right: 500px; top: 250px"
     id="noLogin">
     Continue without login
 </button>
+{% endif %}
+
+
 
 <script>
     const login = document.getElementById("login");

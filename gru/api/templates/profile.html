@@ -1,1 +1,18 @@
 {% extends "base_generic.html" %}
+{% block content %}
+<h1>Welcome Back {{ user.get_username }}</h1>
+<div style="text-align: center">
+    <h2>Manage Account</h2>
+    <button type="button" class="btn btn-info" style="margin-top: 10px">
+        News From Preference
+    </button>
+    <br />
+    <button type="button" class="btn btn-info" style="margin-top: 10px">
+        Manage Preference
+    </button>
+    <br />
+    <button type="button" class="btn btn-danger" style="margin-top: 10px">
+        Delete Account
+    </button>
+</div>
+{% endblock %}
