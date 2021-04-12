@@ -6,8 +6,65 @@
 <p><strong>Location:</strong> {{ university.location }}</a></p>
 <p><strong>Description:</strong> {{ university.description }}</p>
 <p><strong>Impact on Industry:</strong> {{ university.impact_on_industry }}</p>
-<p><strong>Finances:</strong> {{ university.finances }}</p>
+<p><strong>Average Tuition Before Aid:</strong> ${{ university.finances }}</p>
+<p>
+    <strong>Degrees Available:</strong>
+    <ul>
+        {% for degs in degrees %}
+        <li>
+            {{ degs.name }}
+        </li>
+        {% endfor %}
+    </ul>
+</p>
 
+<p>
+    <strong>Majors Available:</strong>
+    <ul>
+        {% for majs in majors %}
+            {% for facs in faculties %}
+                {% if facs.faculty_id == majs.faculty_id %}
+                    <li>
+                        {{ majs.major_name }} in the {{ facs.name }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</p>
 
+{% if clubs %}
+    <p>
+        <strong>Clubs:</strong>
+        <ul>
+            {% for club in clubs %}
+            <li>
+                <strong>{{ club.name }}:</strong> {{ club.description }}
+            </li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endif %}
+
+{% if sports %}
+    <p>
+        <strong>Sports teams:</strong>
+        <ul>
+            {% for sp in sports %}
+            
+                <li><strong>{{ sp.name }}:</strong> {{ sp.sport }}</li>
+                {%  for aw in awards%}
+                    {% if aw.name == sp.name %}
+                    <ul>
+                        <li>
+                            {{ aw.award_name }}, {{ aw.year_awarded }}
+                        </li>
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </p>
+{% endif %}
 
 {% endblock %}
