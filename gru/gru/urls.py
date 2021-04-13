@@ -175,5 +175,5 @@ urlpatterns += [
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
-    path('profile/', profile, name='profile'),
+    
 ]

@@ -15,4 +15,10 @@
         Delete Account
     </button>
 </div>
+<script>
+    const buttons = document.getElementsByTagName("button");
+    buttons[2].addEventListener("click", function () {
+        window.location.href = "{% url 'delete' %}";
+    });
+</script>
 {% endblock %}
