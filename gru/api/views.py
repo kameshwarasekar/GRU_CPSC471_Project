@@ -1045,6 +1045,8 @@ class UniversityDetailView(generic.DetailView):
 
         award = Award.objects.filter(name__in=sport.values_list('name'))
 
+        alumni = Alumni.objects.filter(uni_name=self.object.name)
+
         context['degrees'] = Degree.objects.filter(
             name__in=provs.values_list('degree_name'))
         context['faculties'] = fac
@@ -1052,6 +1054,7 @@ class UniversityDetailView(generic.DetailView):
         context['clubs'] = club
         context['sports'] = sport
         context['awards'] = award
+        context['alumni'] = alumni
         return context
 
 

@@ -67,4 +67,17 @@
     </p>
 {% endif %}
 
+{% if alumni %}
+    <p>
+        <strong>Notable Alumni:</strong>
+        <ul>
+            {% for a in alumni %}
+            <li>
+                <strong>{{ a.name }}:</strong> Graduated in {{ a.graduation_year }}. {{ a.achievement_description }}
+            </li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endif %}
+
 {% endblock %}
