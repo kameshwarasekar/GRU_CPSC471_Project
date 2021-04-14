@@ -23,4 +23,5 @@ urlpatterns = [
     path('pref/<uuid:pk>',
          views.PreferenceDetailView.as_view(),
          name='pref-detail'),
+    path('delete-pref/<uuid:pk>', views.deletePref, name='deletePref'),
 ]
