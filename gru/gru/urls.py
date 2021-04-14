@@ -160,6 +160,18 @@ urlpatterns = [
     path('preferenceContain-update/<str:pk>', views.preferenceContain_put,name ="preferenceContain-update"),
     path('preferenceContain-delete/<str:pk>', views.preferenceContain_delete,name ="preferenceContain-delete"),
     
+    path('sports/', views.sports_get, name = "sports"),
+    path('sports/<str:pk>', views.sports_getspecific, name = "sports-specific"),
+    path('sports-create/', views.sports_post,name ="sports-create"),
+    path('sports-update/<str:pk>', views.sports_put,name ="sports-update"),
+    path('sports-delete/<str:pk>', views.sports_delete,name ="sports-delete"),
+    
+    path('club/', views.club_get, name = "club"),
+    path('club/<str:pk>', views.club_getspecific, name = "club-specific"),
+    path('club-create/', views.club_post,name ="club-create"),
+    path('club-update/<str:pk>', views.club_put,name ="club-update"),
+    path('club-delete/<str:pk>', views.club_delete,name ="club-delete"),
+    
 
 ]
 
