@@ -1,8 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>{{ preferreduni.preferred_uni_name }}</h1>
+<h1> <a href="{{ uni.get_absolute_url }}">{{ preferreduni.preferred_uni_name }}</a></h1>
 
 <p><strong>News:</strong> <a href="https://www.google.com/search?q={{preferreduni.preferred_uni_name}}%20news"
         target="_blank">View the latest news of {{ preferreduni.preferred_uni_name }}</a></p>
+
+<button class="btn btn-danger" id="delete">Delete preference</button>
+<script>
+    const del = document.getElementById("delete");
+    del.addEventListener("click", function () {
+        window.location.href = "{% url 'deletePref' pk=preferreduni.pref_id %}"
+    })
+</script>
 {% endblock %}

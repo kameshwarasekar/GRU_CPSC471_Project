@@ -1103,6 +1103,19 @@ def save(request, pk):
     return HttpResponseRedirect(reverse("university"))
 
 
+def deletePref(request, pk):
+    context = {}
+    try:
+        preference = PreferredUni.objects.get(pref_id=pk)
+        preference.delete()
+        return HttpResponseRedirect(reverse("pref"))
+    except PreferredUni.DoesNotExist:
+        context['msg'] = "The preference does not exist"
+    except Exception as e:
+        context['msg'] = e
+    return render(request, "deletePref.html", context=context)
+
+
 class PreferenceListView(generic.ListView):
     model = PreferredUni
 
@@ -1115,6 +1128,12 @@ class PreferenceListView(generic.ListView):
 
 class PreferenceDetailView(generic.DetailView):
     model = PreferredUni
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        uni = University.objects.get(name=self.object.preferred_uni_name)
+        context["uni"] = uni
+        return context
 
 
 class UniversityListView(generic.ListView):
