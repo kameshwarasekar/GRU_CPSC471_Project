@@ -533,7 +533,7 @@ def extracurricularOfferings_put(request, pk):
     extracurricularOfferings = ExtracurricularOfferings.objects.get(
         excurricular_name=pk)
     serializer = ExtracurricularOfferingsSerializer(
-        instance=extracurricularProgram, data=request.data)
+        instance=extracurricularOfferings, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
