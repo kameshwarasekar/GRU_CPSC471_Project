@@ -201,7 +201,7 @@ class Major(models.Model):
 
 
 class Preference(models.Model):
-    pref_id = models.AutoField(primary_key=True)
+    pref_id = models.UUIDField(primary_key=True)
     user_id = models.IntegerField()
 
     class Meta:

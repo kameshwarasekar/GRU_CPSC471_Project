@@ -533,7 +533,7 @@ def extracurricularOfferings_put(request, pk):
     extracurricularOfferings = ExtracurricularOfferings.objects.get(
         excurricular_name=pk)
     serializer = ExtracurricularOfferingsSerializer(
-        instance=extracurricularProgram, data=request.data)
+        instance=extracurricularOfferings, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -981,6 +981,92 @@ def preferenceContain_delete(request, pk):
     preferenceContain.delete()
     return Response('Item successfully deleted')
 
+#---------------------------Sports----------------------------------
+
+
+@api_view(['GET'])
+def sport_get(request):
+    sport = Sport.objects.all()
+    serializer = SportSerializer(sport, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def sport_getspecific(request, pk):
+    sport = Sport.objects.get(pref_id=pk)
+    serializer = SportSerializer(sport, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def sport_post(request, format=None):
+    serializer = SportSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def sport_put(request, pk):
+    sport = Sport.objects.get(pref_id=pk)
+    serializer = SportsSerializer(instance=sport,
+                                             data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def sport_delete(request, pk):
+    sport = Sport.objects.get(pref_id=pk)
+    sport.delete()
+    return Response('Item successfully deleted')
+
+
+#---------------------------Club----------------------------------
+
+
+@api_view(['GET'])
+def club_get(request):
+    club = Club.objects.all()
+    serializer = ClubSerializer(club, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def club_getspecific(request, pk):
+    club = Club.objects.get(pref_id=pk)
+    serializer = ClubSerializer(club, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def club_post(request, format=None):
+    serializer = ClubSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def club_put(request, pk):
+    club = Club.objects.get(pref_id=pk)
+    serializer = ClubSerializer(instance=club,
+                                             data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def club_delete(request, pk):
+    club = Club.objects.get(pref_id=pk)
+    club.delete()
+    return Response('Item successfully deleted')
 
 # Create your views here.
 def index(request):
