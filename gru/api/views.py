@@ -981,6 +981,7 @@ def preferenceContain_delete(request, pk):
     preferenceContain.delete()
     return Response('Item successfully deleted')
 
+
 #---------------------------Sports----------------------------------
 
 
@@ -1010,8 +1011,7 @@ def sport_post(request, format=None):
 @api_view(['PUT'])
 def sport_put(request, pk):
     sport = Sport.objects.get(pref_id=pk)
-    serializer = SportsSerializer(instance=sports,
-                                             data=request.data)
+    serializer = SportSerializer(instance=sport, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -1054,8 +1054,7 @@ def club_post(request, format=None):
 @api_view(['PUT'])
 def club_put(request, pk):
     club = Club.objects.get(pref_id=pk)
-    serializer = ClubSerializer(instance=club,
-                                             data=request.data)
+    serializer = ClubSerializer(instance=club, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -1067,6 +1066,7 @@ def club_delete(request, pk):
     club = Club.objects.get(pref_id=pk)
     club.delete()
     return Response('Item successfully deleted')
+
 
 # Create your views here.
 def index(request):
@@ -1104,6 +1104,16 @@ def save(request, pk):
 
 
 class PreferenceListView(generic.ListView):
+    model = PreferredUni
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        preference = PreferredUni.objects.filter(user_id=self.request.user.id)
+        context["pref"] = preference
+        return context
+
+
+class PreferenceDetailView(generic.DetailView):
     model = PreferredUni
 
 
