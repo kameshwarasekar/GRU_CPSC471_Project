@@ -16,12 +16,11 @@ class Alumni(models.Model):
     graduation_year = models.IntegerField()
     achievement_description = models.TextField(blank=True, null=True)
     uni_name = models.TextField(blank=True, null=True)
-    
+
     class Meta:
-        #managed = False
         db_table = 'alumni'
         ordering = ['name']
-    
+
     def __str__(self):
         return self.name
 
@@ -31,7 +30,6 @@ class AlumniHas(models.Model):
     degree_name = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'alumni_has'
 
     def __str__(self):
@@ -45,7 +43,6 @@ class Award(models.Model):
     year_awarded = models.IntegerField()
 
     class Meta:
-        managed = True
         db_table = 'award'
 
     def __str__(self):
@@ -58,7 +55,6 @@ class Club(models.Model):
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'club'
 
     def __str__(self):
@@ -72,7 +68,6 @@ class Course(models.Model):
     faculty_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'course'
 
     def __str__(self):
@@ -85,7 +80,6 @@ class CourseTeaching(models.Model):
     prof_id = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'course_teaching'
 
     def __str__(self):
@@ -97,7 +91,6 @@ class Degree(models.Model):
     field = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = True
         db_table = 'degree'
         constraints = [
             models.UniqueConstraint(fields=['name', 'field'],
@@ -114,7 +107,6 @@ class EntryRequirement(models.Model):
     grade = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'entry_requirement'
 
     def __str__(self):
@@ -128,7 +120,6 @@ class EquivalentClass(models.Model):
     grade = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'equivalent_class'
 
     def __str__(self):
@@ -139,7 +130,6 @@ class ExtraCurricularProgram(models.Model):
     name = models.TextField(primary_key=True)
 
     class Meta:
-        managed = False
         db_table = 'extra_curricular_program'
 
     def __str__(self):
@@ -151,7 +141,6 @@ class ExtracurricularOfferings(models.Model):
     excurricular_name = models.TextField(primary_key=True)
 
     class Meta:
-        managed = False
         db_table = 'extracurricular_offerings'
 
     def __str__(self):
@@ -165,7 +154,6 @@ class Faculty(models.Model):
     uni_name = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'faculty'
 
     def __str__(self):
@@ -182,7 +170,7 @@ class FieldOfStudy(models.Model):
         db_table = 'field_of_study'
 
     def __str__(self):
-        return str(self.prof_id)
+        return str(self.fos_id)
 
 
 class GruUser(models.Model):
@@ -192,7 +180,6 @@ class GruUser(models.Model):
     password = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'gru_user'
 
     def __str__(self):
@@ -207,7 +194,6 @@ class Major(models.Model):
     faculty_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'major'
 
     def __str__(self):
@@ -219,7 +205,6 @@ class Preference(models.Model):
     user_id = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'preference'
 
     def __str__(self):
@@ -232,7 +217,6 @@ class PreferenceContain(models.Model):
     user_id = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'preference_contain'
 
     def __str__(self):
@@ -240,12 +224,14 @@ class PreferenceContain(models.Model):
 
 
 class PreferredUni(models.Model):
-    pref_id = models.AutoField(primary_key=True)
-    preferred_uni_name = models.TextField(blank=True, null=True)
+    pref_id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        help_text='Unique ID for this particular preference')
+    preferred_uni_name = models.TextField(null=True)
     user_id = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'preferred_uni'
 
     def __str__(self):
@@ -260,7 +246,6 @@ class Professor(models.Model):
     faculty_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'professor'
         ordering = ['name']
 
@@ -293,7 +278,6 @@ class Ranking(models.Model):
     uni_name = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'ranking'
         ordering = ['rank']
 
@@ -310,7 +294,6 @@ class Sport(models.Model):
     name = models.TextField(primary_key=True)
 
     class Meta:
-        managed = False
         db_table = 'sport'
 
     def __str__(self):
@@ -324,7 +307,6 @@ class Staff(models.Model):
     uni_name = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'staff'
 
     def __str__(self):
@@ -339,7 +321,6 @@ class University(models.Model):
     finances = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'university'
         ordering = ['name']
 
