@@ -9,7 +9,7 @@ from rest_framework import status
 from .serializers import *
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 
@@ -1095,6 +1095,18 @@ def delete(request):
     return render(request, "delete.html", context=context)
 
 
+def save(request, pk):
+    preference = PreferredUni(preferred_uni_name=pk,
+                              user_id=request.user.id,
+                              pref_id=uuid.uuid4())
+    preference.save()
+    return HttpResponseRedirect(reverse("university"))
+
+
+class PreferenceListView(generic.ListView):
+    model = PreferredUni
+
+
 class UniversityListView(generic.ListView):
     model = University
 
@@ -1132,6 +1144,16 @@ class UniversityDetailView(generic.DetailView):
         award = Award.objects.filter(name__in=sport.values_list('name'))
 
         alumni = Alumni.objects.filter(uni_name=self.object.name)
+
+        try:
+            preference = PreferredUni.objects.get(
+                preferred_uni_name=self.object.name,
+                user_id=self.request.user.id)
+            context['msg'] = True
+        except PreferredUni.DoesNotExist:
+            context['msg'] = False
+        except Exception as e:
+            context['msg'] = e
 
         context['degrees'] = Degree.objects.filter(
             name__in=provs.values_list('degree_name'))

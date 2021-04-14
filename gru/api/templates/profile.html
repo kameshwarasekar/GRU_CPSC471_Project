@@ -3,9 +3,9 @@
 <h1>Welcome Back {{ user.get_username }}</h1>
 <div style="text-align: center">
     <h2>Manage Account</h2>
-    <button type="button" class="btn btn-info" style="margin-top: 10px">
+    <!-- <button type="button" class="btn btn-info" style="margin-top: 10px">
         News From Preference
-    </button>
+    </button> -->
     <br />
     <button type="button" class="btn btn-info" style="margin-top: 10px">
         Manage Preference
@@ -17,8 +17,11 @@
 </div>
 <script>
     const buttons = document.getElementsByTagName("button");
-    buttons[2].addEventListener("click", function () {
+    buttons[1].addEventListener("click", function () {
         window.location.href = "{% url 'delete' %}";
+    });
+    buttons[0].addEventListener("click", function () {
+        window.location.href = "{% url 'pref' %}"
     });
 </script>
 {% endblock %}

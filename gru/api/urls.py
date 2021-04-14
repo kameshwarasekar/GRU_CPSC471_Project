@@ -18,4 +18,6 @@ urlpatterns = [
     path('option/', views.option, name='option'),
     path('profile/', views.profile, name='profile'),
     path('delete/', views.delete, name='delete'),
+    path('save/<str:pk>', views.save, name='save'),
+    path('pref/', views.PreferenceListView.as_view(), name='pref'),
 ]
