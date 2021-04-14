@@ -1129,6 +1129,12 @@ class PreferenceListView(generic.ListView):
 class PreferenceDetailView(generic.DetailView):
     model = PreferredUni
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        uni = University.objects.get(name=self.object.preferred_uni_name)
+        context["uni"] = uni
+        return context
+
 
 class UniversityListView(generic.ListView):
     model = University
