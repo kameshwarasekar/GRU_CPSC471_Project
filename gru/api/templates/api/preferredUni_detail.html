@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>{{ preferreduni.preferred_uni_name }}</h1>
+
+<p><strong>News:</strong> <a href="https://www.google.com/search?q={{preferreduni.preferred_uni_name}}%20news"
+        target="_blank">View the latest news of {{ preferreduni.preferred_uni_name }}</a></p>
+{% endblock %}

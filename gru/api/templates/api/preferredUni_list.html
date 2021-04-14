@@ -1,3 +1,15 @@
 {% extends "base_generic.html" %}
 {% block content %}
+<h1>Preference</h1>
+{% if pref %}
+<ul>
+    {% for p in pref %}
+    <li>
+        <a href="{{ p.get_absolute_url }}">{{ p.preferred_uni_name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no preferences in the database.</p>
+{% endif %}
 {% endblock %}

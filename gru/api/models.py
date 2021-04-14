@@ -212,7 +212,7 @@ class Preference(models.Model):
 
 
 class PreferenceContain(models.Model):
-    pref_id = models.AutoField(primary_key=True)
+    pref_id = models.UUIDField(primary_key=True)
     uni_name = models.TextField()
     user_id = models.IntegerField()
 
@@ -236,6 +236,10 @@ class PreferredUni(models.Model):
 
     def __str__(self):
         return str(self.pref_id)
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('pref-detail', args=[str(self.pref_id)])
 
 
 class Professor(models.Model):

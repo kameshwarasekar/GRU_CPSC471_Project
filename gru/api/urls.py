@@ -20,4 +20,7 @@ urlpatterns = [
     path('delete/', views.delete, name='delete'),
     path('save/<str:pk>', views.save, name='save'),
     path('pref/', views.PreferenceListView.as_view(), name='pref'),
+    path('pref/<uuid:pk>',
+         views.PreferenceDetailView.as_view(),
+         name='pref-detail'),
 ]
