@@ -985,22 +985,22 @@ def preferenceContain_delete(request, pk):
 
 
 @api_view(['GET'])
-def sport_get(request):
-    sport = Sport.objects.all()
-    serializer = SportSerializer(sport, many=True)
+def sports_get(request):
+    sports = Sports.objects.all()
+    serializer = SportsSerializer(sports, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def sport_getspecific(request, pk):
-    sport = Sport.objects.get(pref_id=pk)
-    serializer = SportSerializer(sport, many=False)
+def sports_getspecific(request, pk):
+    sports = Sports.objects.get(pref_id=pk)
+    serializer = SportsSerializer(sports, many=False)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def sport_post(request, format=None):
-    serializer = SportSerializer(data=request.data)
+def sports_post(request, format=None):
+    serializer = SportsSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -1008,9 +1008,9 @@ def sport_post(request, format=None):
 
 
 @api_view(['PUT'])
-def sport_put(request, pk):
-    sport = Sport.objects.get(pref_id=pk)
-    serializer = SportsSerializer(instance=sport,
+def sports_put(request, pk):
+    sports = Sports.objects.get(pref_id=pk)
+    serializer = SportsSerializer(instance=sports,
                                              data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -1019,9 +1019,9 @@ def sport_put(request, pk):
 
 
 @api_view(['DELETE'])
-def sport_delete(request, pk):
-    sport = Sport.objects.get(pref_id=pk)
-    sport.delete()
+def sports_delete(request, pk):
+    sports = Sports.objects.get(pref_id=pk)
+    sports.delete()
     return Response('Item successfully deleted')
 
 
