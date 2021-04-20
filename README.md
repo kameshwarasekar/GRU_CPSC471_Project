@@ -12,6 +12,7 @@
 2. Run `py manage.py runserver` on Windows or `python3 manage.py runserver` on Linux/macOS X
 3. Open a browser tab and go to `http://127.0.0.1:8000/`
 
-## User guide
+## API Documentation
+[Postman Documenter](https://documenter.getpostman.com/view/14904284/TzJpizm5)
  
 
