@@ -1,5 +1,5 @@
 # GRU_CPSC471_Project
-"Get Ready for Uni" is an application that assists students who desire to pursue higher studies in the Universities in North America
+"Get Ready for Uni" is an application that assists students who desire to pursue higher studies in the Universities in North America. It also provides RESTful API services for developers to add, modify and delete relevant data.
 
 ## Built with
 - [Python 3.9.2](https://www.python.org/)
